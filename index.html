@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>निजधाम आश्रम</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fdf6e3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo::before {
+            content: "🕉️";
+            margin-right: 10px;
+            font-size: 2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 0;
+        }
+
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.4);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            background: rgba(0,0,0,0.3);
+            padding: 2rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            margin-top: 100px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .doha {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            border-left: 4px solid #ff6b35;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 3rem 0;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: #ff6b35;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            text-align: center;
+            border-bottom: 3px solid #ff6b35;
+            padding-bottom: 0.5rem;
+        }
+
+        .saints-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 2rem;
+          margin-top: 2rem;
+        }
+        
+        .saint-card {
+          background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+          padding: 1.5rem;
+          border-radius: 12px;
+          text-align: center;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+          transition: transform 0.3s ease;
+        }
+        
+        .saint-card:hover {
+          transform: translateY(-5px);
+        }
+        
+        .saint-card img {
+          width: 100%;
+          max-height: 250px;
+          object-fit: cover;
+          border-radius: 10px;
+          margin-bottom: 1rem;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .saint-card h3 {
+          color: #d35400;
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+        }
+        
+        .saint-card p {
+          font-size: 1rem;
+          line-height: 1.5;
+        }
+
+        .locations-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 2rem;
+          margin-top: 2rem;
+        }
+        
+        .location-card {
+          background: linear-gradient(135deg, #a8e6cf, #88d8a3);
+          padding: 1.5rem;
+          border-radius: 12px;
+          text-align: center;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+          transition: transform 0.3s ease;
+        }
+        
+        .location-card:hover {
+          transform: translateY(-5px);
+        }
+        
+        .location-card img {
+          width: 100%;
+          max-height: 200px;
+          object-fit: cover;
+          border-radius: 10px;
+          margin-bottom: 1rem;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .location-card h3 {
+          color: #2d3436;
+          font-size: 1.3rem;
+          margin-bottom: 0.5rem;
+        }
+        
+        .location-card p {
+          font-size: 1rem;
+          line-height: 1.5;
+        }
+
+        .contact-box {
+          margin-top: 1rem;
+          padding: 0.8rem 1rem;
+          background: rgba(255, 255, 255, 0.35);
+          border-radius: 8px;
+          font-size: 0.95rem;
+          line-height: 1.6;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+          text-align: left;
+        }
+        
+        .contact-box a {
+          color: #2d3436;
+          font-weight: bold;
+          text-decoration: none;
+        }
+        
+        .contact-box a:hover {
+          text-decoration: underline;
+        }
+
+        /* Photo Gallery */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .photo-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            height: 200px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05);
+        }
+
+        .events-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 1.5rem;
+          margin-top: 1rem;
+        }
+        
+        .event-card {
+          background: linear-gradient(135deg, #ffeaa7, #fab1a0);
+          padding: 1.5rem;
+          border-radius: 10px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+          transition: transform 0.3s ease;
+        }
+        
+        .event-card:hover {
+          transform: translateY(-5px);
+        }
+        
+        .event-date {
+          background: #ff6b35;
+          color: white;
+          padding: 0.5rem 1rem;
+          border-radius: 25px;
+          font-weight: bold;
+          display: inline-block;
+          margin-bottom: 1rem;
+        }
+
+        .monthly-calendar {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          gap: 1rem;
+          margin-top: 1rem;
+        }
+        
+        .month-block {
+          background: #fffdf6;
+          padding: 0.75rem 1rem;
+          border-radius: 10px;
+          box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+          font-size: 0.95rem;
+          line-height: 1.4;
+          max-height: 220px;        /* prevent super tall blocks */
+          overflow-y: auto;         /* scroll if needed */
+        }
+        
+        .month-block h4 {
+          color: #d35400;
+          margin-bottom: 0.5rem;
+          font-size: 1.1rem;
+          border-bottom: 1px solid #ff6b35;
+          padding-bottom: 0.3rem;
+        }
+        
+        .month-block ul {
+          padding-left: 1.2rem;
+          margin: 0;
+          list-style-type: disc;
+        }
+
+        .month-block::-webkit-scrollbar {
+          width: 6px;
+        }
+        .month-block::-webkit-scrollbar-thumb {
+          background: #ccc;
+          border-radius: 4px;
+        }
+
+        .charity-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 2rem;
+          margin-top: 1.5rem;
+        }
+        
+        .charity-column h3 {
+          color: #ff6b35;
+          margin-bottom: 1rem;
+          font-size: 1.3rem;
+          border-bottom: 2px solid #ff6b35;
+          padding-bottom: 0.3rem;
+        }
+        /* Contact Info */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .contact-item {
+            background: linear-gradient(135deg, #a8e6cf, #88d8a3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .contact-item h3 {
+            color: #2d3436;
+            margin-bottom: 0.5rem;
+        }
+
+        .audio-player-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 1.5rem;
+          margin-top: 1rem;
+        }
+        
+        .audio-card {
+          background: linear-gradient(135deg, #fdcb6e, #ffeaa7);
+          padding: 1rem;
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .audio-card h4 {
+          font-size: 1.1rem;
+          margin-bottom: 0.5rem;
+          color: #d35400;
+        }
+        
+        .audio-card audio {
+          width: 100%;
+          border-radius: 6px;
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3436;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .doha {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 1rem;
+            }
+        }
+
+        .side-doha {
+          position: fixed;
+          top: 150px;
+          width: 180px;
+          color: #fff;
+          font-size: 1.1rem;
+          font-family: 'Georgia', 'Devanagari Sangam MN', serif;
+          font-style: italic;
+          padding: 1rem;
+          z-index: 1000;
+          line-height: 1.6;
+          text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+          animation: fadeIn 1.5s ease forwards;
+        }
+        
+        .left-doha {
+          left: 10px;
+          text-align: left;
+        }
+        
+        .right-doha {
+          right: 10px;
+          text-align: right;
+        }
+        
+        /* Optional smooth fade-in */
+        @keyframes fadeIn {
+          0% { opacity: 0; transform: translateY(20px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Hide on small screens */
+        @media (max-width: 992px) {
+          .side-doha {
+            display: none;
+          }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">निजधाम आश्रम</div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">मुख्य</a></li>
+                        <li><a href="#saints">हमारे संतों का जीवन दर्शन</a></li>
+                        <li><a href="#events">कार्यक्रम</a></li>
+                        <li><a href="#calendar">वार्षिक कैलेंडर</a></li>
+                        <li><a href="#gallery">गैलरी</a></li>
+                        <li><a href="#locations">हमारे आश्रम स्थल</a></li>
+                        <li><a href="#charity">सेवा</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-slider">
+            <img class="hero-slide active" src="images/image1.jpeg" alt="Mandir Image" />
+            <img class="hero-slide" src="images/image2.jpeg" alt="Mandir Image" />
+            <img class="hero-slide" src="images/image3.jpeg" alt="Mandir Image" />
+            <img class="hero-slide" src="images/image4.jpeg" alt="Mandir Image" />
+        </div>
+        
+        <div class="hero-content">
+            <h1>निजधाम आश्रम में आपका स्वागत है</h1>
+            <div class="doha" id="rotating-doha">
+                "जय सचिदानंद"
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+<!--             <section id="about" class="section">
+                <h2>🏛️ मंदिर का इतिहास</h2>
+                <p>यह पवित्र श्री राधा कृष्ण मंदिर सैकड़ों वर्षों से भक्तों की आस्था का केंद्र रहा है। यहाँ स्थापित देवी-देवताओं की प्रतिमाएँ अत्यंत प्राचीन और चमत्कारिक हैं।</p>
+                <p>इस मंदिर की स्थापना महान संत श्री गुरुदेव जी द्वारा की गई थी। यह स्थान आध्यात्मिक शांति और दिव्य अनुभव प्रदान करता है।</p>
+                <p>मंदिर में भगवान कृष्ण और राधा रानी की अत्यंत सुंदर प्रतिमाएं हैं जो भक्तों को आनंद और शांति प्रदान करती हैं।</p>
+            </section> -->
+
+            <section id="saints" class="section">
+                <h2>संतों की प्रेरणादायक कथाएँ</h2>
+            
+                <div class="saints-grid">
+                  <div class="saint-card">
+                    <img src="images/baba-ramdas.jpg" alt="बाबा रामदास साहिब जी" />
+                    <h3>बाबा रामदास साहिब जी</h3>
+                    <p>
+                      बाबा रामदास साहिब जी ने अपना सम्पूर्ण जीवन सेवा, भक्ति और सच्चाई के मार्ग पर अर्पित किया। 
+                      उन्होंने निःस्वार्थ सेवा के माध्यम से हज़ारों लोगों को आध्यात्मिक मार्ग दिखाया।
+                    </p>
+                  </div>
+            
+                  <div class="saint-card">
+                    <img src="images/sant-name.jpg" alt="संत का नाम" />
+                    <h3>जय बाबा साहिब जी</h3>
+                    <p>
+                      जय बाबा जी की वाणी, विनम्रता और साधना से जनमानस को जागरण मिला। 
+                      उनका जीवन संतुलन, ध्यान और प्रेम का आदर्श उदाहरण है।
+                    </p>
+                  </div>
+            
+                  <!-- Add more saint cards as needed -->
+                </div>
+            </section>
+
+            <section id="locations" class="section">
+              <div class="container">
+                <h2>हमारे आश्रम स्थल</h2>
+            
+                <div class="locations-grid">
+            
+                  <div class="location-card">
+                    <img src="images/nijdham-ashram.jpg" alt="निजधाम आश्रम" />
+                    <h3>निजधाम आश्रम, ग्वालियर</h3>
+                    <p>
+                      मुख्य आश्रम, जहाँ श्री बाबा रामदास साहिब जी ने वर्षों तक साधना की। 
+                      यहाँ नियमित रूप से सत्संग, भजन और धार्मिक आयोजन होते हैं।
+                    </p>
+                    <div class="contact-box">
+                        <strong>सेवाधारी:</strong> श्री दीपक जी<br>
+                        <strong>संपर्क:</strong> <a href="tel:+91999999999">+91 999999999</a><br>
+                        <strong>पता:</strong> लश्कर, ग्वालियर<br>
+                      </div>
+                  </div>
+            
+                  <div class="location-card">
+                    <img src="images/delhi-ashram.jpg" alt="दिल्ली आश्रम" />
+                    <h3>निजधाम आश्रम, हरिद्वार</h3>
+                    <p>
+                      यह आश्रम हरिद्वार में स्थित है और भक्तों के लिए भक्ति, ध्यान और सेवा के कार्यों का केंद्र है। 
+                      यहाँ प्रत्येक सप्ताह सत्संग और भंडारे आयोजित होते हैं।
+                    </p>
+                    <div class="contact-box">
+                        <strong>सेवाधारी:</strong> श्री दीपक जी<br>
+                        <strong>संपर्क:</strong> <a href="tel:+91999999999">+91 999999999</a><br>
+                        <strong>पता:</strong> लश्कर, ग्वालियर<br>
+                      </div>
+                  </div>
+            
+                  <div class="location-card">
+                    <img src="images/varanasi-ashram.jpg" alt="वाराणसी आश्रम" />
+                    <h3>निजधाम आश्रम, उल्हासनगर</h3>
+                    <p>
+                      मुख्य आश्रम, जहाँ श्री बाबा रामदास साहिब जी ने वर्षों तक साधना की। 
+                      यहाँ नियमित रूप से सत्संग, भजन और धार्मिक आयोजन होते हैं।
+                    </p>
+
+                    <div class="contact-box">
+                        <strong>सेवाधारी:</strong> श्री दीपक जी<br>
+                        <strong>संपर्क:</strong> <a href="tel:+91999999999">+91 999999999</a><br>
+                        <strong>पता:</strong> लश्कर, ग्वालियर<br>
+                      </div>
+                  </div>
+            
+                </div>
+              </div>
+            </section>
+
+            <section id="events" class="section">
+              <div class="container">
+                <h2>कार्यक्रम</h2>
+                <div class="events-grid">
+            
+                  <div class="event-card">
+                    <div class="event-date">10 जुलाई 2025</div>
+                    <h4>गुरु पूर्णिमा विशेष सत्संग</h4>
+                    <p>श्री गुरुदेव को समर्पित दिव्य सत्संग, प्रातः 9 बजे से। भजन, प्रवचन, चरण वंदना एवं महाप्रसाद वितरण। सभी भक्त आमंत्रित हैं।</p>
+                  </div>
+            
+                  <div class="event-card">
+                    <div class="event-date">6 सितंबर 2025</div>
+                    <h4>श्रीकृष्ण जन्माष्टमी महोत्सव</h4>
+                    <p>श्री गुरु नानक देव जी की जयंती पर विशेष कीर्तन, लंगर सेवा एवं सत्संग सभा। समय: दोपहर 12 बजे से, स्थान: उल्हासनगर आश्रम।</p>
+                  </div>
+                    
+                  <div class="event-card">
+                    <div class="event-date">16 नवंबर 2025</div>
+                    <h4>श्रीकृष्ण जन्माष्टमी महोत्सव</h4>
+                    <p>रात्रि 9 बजे से कीर्तन, झूला दर्शन, रासलीला एवं रात्रि जागरण। सभी भक्तों को सादर आमंत्रण। स्थान: हरिद्वार आश्रम।</p>
+                  </div>
+                </div>
+            </section>
+
+            <section id="calendar" class="section">
+                <h2>वार्षिक कैलेंडर</h2>
+                <div class="monthly-calendar">
+            
+                  <div class="month-block">
+                    <h4>जनवरी</h4>
+                    <ul>
+                      <li>14 जनवरी - मकर संक्रांति सेवा</li>
+                      <li>26 जनवरी - गणतंत्र दिवस पूजा</li>
+                    </ul>
+                  </div>
+            
+                  <div class="month-block">
+                    <h4>फरवरी</h4>
+                    <ul>
+                      <li>24 फरवरी - संत दर्शन दिवस</li>
+                    </ul>
+                  </div>
+            
+                  <div class="month-block">
+                    <h4>मार्च</h4>
+                    <ul>
+                      <li>8 मार्च - होली महोत्सव</li>
+                    </ul>
+                  </div>
+
+                <!-- अप्रैल -->
+                <div class="month-block">
+                  <h4>अप्रैल</h4>
+                  <ul>
+                    <li>14 अप्रैल – राम नवमी उत्सव</li>
+                    <li>22 अप्रैल – हनुमान जयंती पूजन</li>
+                  </ul>
+                </div>
+                
+                <!-- मई -->
+                <div class="month-block">
+                  <h4>मई</h4>
+                  <ul>
+                    <li>23 मई – संत स्मृति दिवस</li>
+                  </ul>
+                </div>
+                
+                <!-- जून -->
+                <div class="month-block">
+                  <h4>जून</h4>
+                  <ul>
+                    <li>16 जून – निर्जला एकादशी उपवास</li>
+                  </ul>
+                </div>
+                
+                <!-- जुलाई -->
+                <div class="month-block">
+                  <h4>जुलाई</h4>
+                  <ul>
+                    <li>21 जुलाई – गुरु पूर्णिमा विशेष सत्संग</li>
+                  </ul>
+                </div>
+                
+                <!-- अगस्त -->
+                <div class="month-block">
+                  <h4>अगस्त</h4>
+                  <ul>
+                    <li>15 अगस्त – स्वतंत्रता दिवस कीर्तन</li>
+                  </ul>
+                </div>
+                
+                <!-- सितंबर -->
+                <div class="month-block">
+                  <h4>सितंबर</h4>
+                  <ul>
+                    <li>6 सितंबर – श्रीकृष्ण जन्माष्टमी</li>
+                  </ul>
+                </div>
+                
+                <!-- अक्टूबर -->
+                <div class="month-block">
+                  <h4>अक्टूबर</h4>
+                  <ul>
+                    <li>11 अक्टूबर – शरद पूर्णिमा भजन संध्या</li>
+                  </ul>
+                </div>
+                
+                <!-- नवंबर -->
+                <div class="month-block">
+                  <h4>नवंबर</h4>
+                  <ul>
+                    <li>1 नवंबर – दीपावली महोत्सव</li>
+                    <li>16 नवंबर – गुरु नानक जयंती</li>
+                  </ul>
+                </div>
+                
+                <!-- दिसंबर -->
+                <div class="month-block">
+                  <h4>दिसंबर</h4>
+                  <ul>
+                    <li>25 दिसंबर – वर्षांत भजन संध्या</li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+        
+            </div>
+          </div>
+        </section>
+            
+            <section id="gallery" class="section">
+                <h2>📸 फोटो गैलरी</h2>
+                <div class="photo-gallery">
+                    <div class="photo-item">मुख्य मंदिर</div>
+                    <div class="photo-item">राधा कृष्ण मूर्ति</div>
+                    <div class="photo-item">आरती समय</div>
+                    <div class="photo-item">त्योहार उत्सव</div>
+                    <div class="photo-item">सत्संग हॉल</div>
+                    <div class="photo-item">प्रसाद वितरण</div>
+                </div>
+            </section>
+
+<!--             <section id="contact" class="section">
+                <h2>📍 संपर्क विवरण</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>पता</h3>
+                        <p>श्री राधा कृष्ण मंदिर<br>
+                        मुख्य मार्ग, धर्म नगर<br>
+                        इंदौर, मध्य प्रदेश - 452001</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>संपर्क</h3>
+                        <p>📞 +91 9876543210<br>
+                        📧 info@radhakrishnamandir.com<br>
+                        🕐 सुबह 5:00 - रात 9:00</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>आरती समय</h3>
+                        <p>🌅 मंगला आरती: 5:00 AM<br>
+                        🌞 श्रृंगार आरती: 7:00 AM<br>
+                        🌆 संध्या आरती: 7:00 PM</p>
+                    </div>
+                </div>
+            </section> -->
+
+<!--             <section id="events" class="section">
+                <h2>🎭 आगामी कार्यक्रम</h2>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-date">15 जुलाई</div>
+                        <h3>गुरु पूर्णिमा</h3>
+                        <p>गुरु पूर्णिमा के अवसर पर विशेष पूजा और सत्संग का आयोजन। भक्तों को गुरु महत्व पर प्रवचन सुनने का अवसर मिलेगा।</p>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-date">22 जुलाई</div>
+                        <h3>हरियाली तीज</h3>
+                        <p>हरियाली तीज के उत्सव में राधा रानी की विशेष सजावट और महिलाओं के लिए विशेष पूजा का आयोजन।</p>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-date">15 अगस्त</div>
+                        <h3>श्री कृष्ण जन्माष्टमी</h3>
+                        <p>भगवान कृष्ण के जन्मदिन पर भव्य उत्सव। मध्यरात्रि में विशेष आरती और प्रसाद वितरण।</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>📅 वार्षिक कैलेंडर</h2>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <h3>नवरात्रि (अप्रैल/अक्टूबर)</h3>
+                        <p>9 दिनों तक चलने वाला महत्वपूर्ण त्योहार जिसमें माता दुर्गा की पूजा होती है।</p>
+                    </div>
+                    <div class="event-card">
+                        <h3>दिवाली (नवंबर)</h3>
+                        <p>रोशनी का त्योहार। मंदिर में विशेष दीप प्रज्वलन और लक्ष्मी पूजन।</p>
+                    </div>
+                    <div class="event-card">
+                        <h3>होली (मार्च)</h3>
+                        <p>रंगों का त्योहार। भगवान कृष्ण के साथ होली खेलने का पारंपरिक उत्सव।</p>
+                    </div>
+                </div>
+            </section> -->
+            <section id="charity" class="section">
+              <div class="container">
+                <h2>🤝 सेवा कार्य </h2>
+                <p>हमारा मंदिर नियमित सेवा कार्यों और विशेष शिविरों के माध्यम से समाज में सेवा प्रदान करता है।</p>
+            
+                <div class="charity-grid">
+            
+                  <!-- Regular Seva Column -->
+                  <div class="charity-column">
+                    <h3>🔁 नियमित सेवा</h3>
+            
+                    <div class="event-card">
+                      <h4>स्वास्थ्य सेवा</h4>
+                      <p>हर रविवार को निःशुल्क स्वास्थ्य जांच शिविर एवं दवा वितरण। वरिष्ठ चिकित्सकों की उपस्थिति में।</p>
+                    </div>
+                  </div>
+            
+                  <!-- Upcoming Camps Column -->
+                  <div class="charity-column">
+                    <h3>📅 आगामी शिविर</h3>
+                    <div class="event-card">
+                      <div class="event-date">4 अगस्त 2025</div>
+                      <h4>निःशुल्क नेत्र जांच शिविर</h4>
+                      <p>स्थान: उल्हासनगर आश्रम परिसर, समय: प्रातः 10 बजे से। चश्मे का वितरण भी होगा।</p>
+                    </div>
+            
+                    <div class="event-card">
+                      <div class="event-date">18 अगस्त 2025</div>
+                      <h4>ध्यान एवं योग शिविर</h4>
+                      <p>स्थान: हरिद्वार आश्रम, 5 दिवसीय प्रातः 6 बजे से। पूर्व पंजीकरण अनिवार्य।</p>
+                    </div>
+                  </div>
+            
+                </div>
+              </div>
+            </section>
+
+            <section class="section">
+              <h2>🎵 आध्यात्मिक ऑडियो</h2>
+              <div class="audio-player-grid">
+            
+                <div class="audio-card">
+                  <h4>सत्संग 1</h4>
+                  <audio controls>
+                    <source src="audio/AUD-20240630-WA0011.mp3" type="audio/mp3">
+                    आपका ब्राउज़र ऑडियो चलाने में असमर्थ है।
+                  </audio>
+                </div>
+            
+                <div class="audio-card">
+                  <h4>सत्संग 2</h4>
+                  <audio controls>
+                    <source src="audio/AUD-20240630-WA0011.mp3" type="audio/mp3">
+                    Your browser does not support audio playback.
+                  </audio>
+                </div>
+            
+                <div class="audio-card">
+                  <h4>सत्संग 3</h4>
+                  <audio controls>
+                    <source src="audio/AUD-20240630-WA0011.mp3" type="audio/mp3">
+                  </audio>
+                </div>
+            
+                <div class="audio-card">
+                  <h4>सत्संग 4</h4>
+                  <audio controls>
+                    <source src="audio/AUD-20240630-WA0011.mp3" type="audio/mp3">
+                  </audio>
+                </div>
+            
+                <div class="audio-card">
+                  <h4>सत्संग 5</h4>
+                  <audio controls>
+                    <source src="audio/AUD-20240630-WA0011.mp3" type="audio/mp3">
+                  </audio>
+                </div>
+            
+              </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 श्री राधा कृष्ण मंदिर। सभी अधिकार सुरक्षित।</p>
+            <p>राधे राधे 🙏</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hero slider functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const totalSlides = slides.length;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % totalSlides;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, 4000); // Change slide every 4 seconds
+
+        // Rotating dohas
+        const dohas = [
+            // "राधा कृष्ण राधा कृष्ण कृष्ण कृष्ण राधा राधा<br>राधा श्याम राधा श्याम श्याम श्याम राधा राधा",
+            // "हरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे<br>हरे राम हरे राम राम राम हरे हरे",
+            // "राधे राधे गोविंद गोविंद राधे<br>राधे राधे गोपाल गोपाल राधे",
+            // "श्री कृष्ण गोविंद हरे मुरारी<br>हे नाथ नारायण वासुदेव",
+            // "जय जय श्री राधे श्याम<br>जय जय जय श्री राधे श्याम"
+            "सतगुरु स्वामी बाबा रामदास साहिब की जय",
+            "सतगुरु स्वामी जय बाबा साहिब की जय"
+        ];
+
+        let currentDoha = 0;
+        const dohaElement = document.getElementById('rotating-doha');
+
+        function changeDoha() {
+            dohaElement.innerHTML = dohas[currentDoha];
+            currentDoha = (currentDoha + 1) % dohas.length;
+        }
+
+        setInterval(changeDoha, 5000); // Change doha every 5 seconds
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add hover effects to cards
+        const cards = document.querySelectorAll('.event-card, .photo-item, .contact-item');
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+<div class="side-doha left-doha">
+  <p>"संतों की वाणी अमृत तुल्य है।"</p>
+  <p>"राम नाम सदा सुखदाई।"</p>
+</div>
+
+<div class="side-doha right-doha">
+  <p>"सतगुरु की महिमा अपरंपार।"</p>
+  <p>"भक्ति मार्ग ही मोक्ष का मार्ग है।"</p>
+</div>
+    
+</html>
