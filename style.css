@@ -1,0 +1,27 @@
+.locations-scroll-wrapper {
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.locations-scroll {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+}
+
+.location-card {
+  flex: 0 0 auto;
+  width: 300px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  scroll-snap-align: start;
+}
+
+.locations-scroll-wrapper::-webkit-scrollbar {
+  display: none;
+}
