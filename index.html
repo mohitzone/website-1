@@ -517,29 +517,61 @@
     </header>
 
     <section id="home" class="hero">
-        <div class="hero-slider">
-            <img class="hero-slide active" src="images/image1.jpeg" alt="Mandir Image" />
-            <img class="hero-slide" src="images/image2.jpeg" alt="Mandir Image" />
-            <img class="hero-slide" src="images/image3.jpeg" alt="Mandir Image" />
-            <img class="hero-slide" src="images/image4.jpeg" alt="Mandir Image" />
-        </div>
-        
-        <div class="hero-content">
-            <h1>निजधाम आश्रम में आपका स्वागत है</h1>
-            <div class="doha" id="rotating-doha">
-                "जय सचिदानंद"
-            </div>
-        </div>
+      <div class="hero-slider">
+        <img class="hero-slide active" src="images/image2.jpeg" alt="Mandir Image" />
+        <img class="hero-slide" src="images/image1.jpeg" alt="Mandir Image" />
+        <img class="hero-slide" src="images/image3.jpeg" alt="Mandir Image" />
+        <img class="hero-slide" src="images/image4.jpeg" alt="Mandir Image" />
+      </div>
+      <div class="hero-content">
+        <h1>निजधाम आश्रम में आपका स्वागत है</h1>
+        <div class="doha" id="rotating-doha"></div>
+        <!-- <div id="notification-tab" style="margin:1.5rem auto 1.2rem auto;max-width:520px;"></div> -->
+
+      </div>
     </section>
+    <script>
+      const dohas = [
+    "सतगुरु स्वामी बाबा रामदास साहिब की जय",
+    "सतगुरु स्वामी जय बाबा साहिब की जय",
+    "स्वामी विशनदास साहिब की जय",
+    "दादा दयाल दास साहिब की जय",
+  ];
+
+        let currentDoha = 0;
+  const dohaElement = document.getElementById('rotating-doha');
+
+  // Show first line immediately
+  dohaElement.innerHTML = dohas[currentDoha];
+
+  function changeDoha() {
+    currentDoha = (currentDoha + 1) % dohas.length;
+    dohaElement.innerHTML = dohas[currentDoha];
+  }
+
+  setInterval(changeDoha, 5000); // rotate every 5 sec
+      // Hero slider functionality (changes photo every 5 seconds)
+      let currentSlide = 0;
+      const slides = document.querySelectorAll('.hero-slide');
+      const totalSlides = slides.length;
+
+      function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % totalSlides;
+        slides[currentSlide].classList.add('active');
+      }
+
+      setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    </script>
+    
 
     <main class="main-content">
         <div class="container">
-<!--             <section id="about" class="section">
-                <h2>🏛️ मंदिर का इतिहास</h2>
-                <p>यह पवित्र श्री राधा कृष्ण मंदिर सैकड़ों वर्षों से भक्तों की आस्था का केंद्र रहा है। यहाँ स्थापित देवी-देवताओं की प्रतिमाएँ अत्यंत प्राचीन और चमत्कारिक हैं।</p>
-                <p>इस मंदिर की स्थापना महान संत श्री गुरुदेव जी द्वारा की गई थी। यह स्थान आध्यात्मिक शांति और दिव्य अनुभव प्रदान करता है।</p>
-                <p>मंदिर में भगवान कृष्ण और राधा रानी की अत्यंत सुंदर प्रतिमाएं हैं जो भक्तों को आनंद और शांति प्रदान करती हैं।</p>
-            </section> -->
+             <section id="about" class="section">
+                <!-- notification tab moved to hero-content above -->
+                  <div id="notification-tab" style="margin:1.5rem auto 1.2rem auto;max-width:520px;"></div>
+              </section>
+
 
            <section id="saints" class="section">
   <section id="saints" class="section">
@@ -723,6 +755,7 @@
 <script src="events.js"></script>
 <script src="calander.js"></script>
 <script src="script.js"></script>
+<script src="notifications.js"></script>
 
 
             
@@ -738,68 +771,8 @@
                 </div>
             </section>
 
-<!--             <section id="contact" class="section">
-                <h2>📍 संपर्क विवरण</h2>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <h3>पता</h3>
-                        <p>श्री राधा कृष्ण मंदिर<br>
-                        मुख्य मार्ग, धर्म नगर<br>
-                        इंदौर, मध्य प्रदेश - 452001</p>
-                    </div>
-                    <div class="contact-item">
-                        <h3>संपर्क</h3>
-                        <p>📞 +91 9876543210<br>
-                        📧 info@radhakrishnamandir.com<br>
-                        🕐 सुबह 5:00 - रात 9:00</p>
-                    </div>
-                    <div class="contact-item">
-                        <h3>आरती समय</h3>
-                        <p>🌅 मंगला आरती: 5:00 AM<br>
-                        🌞 श्रृंगार आरती: 7:00 AM<br>
-                        🌆 संध्या आरती: 7:00 PM</p>
-                    </div>
-                </div>
-            </section> -->
+            
 
-<!--             <section id="events" class="section">
-                <h2>🎭 आगामी कार्यक्रम</h2>
-                <div class="events-grid">
-                    <div class="event-card">
-                        <div class="event-date">15 जुलाई</div>
-                        <h3>गुरु पूर्णिमा</h3>
-                        <p>गुरु पूर्णिमा के अवसर पर विशेष पूजा और सत्संग का आयोजन। भक्तों को गुरु महत्व पर प्रवचन सुनने का अवसर मिलेगा।</p>
-                    </div>
-                    <div class="event-card">
-                        <div class="event-date">22 जुलाई</div>
-                        <h3>हरियाली तीज</h3>
-                        <p>हरियाली तीज के उत्सव में राधा रानी की विशेष सजावट और महिलाओं के लिए विशेष पूजा का आयोजन।</p>
-                    </div>
-                    <div class="event-card">
-                        <div class="event-date">15 अगस्त</div>
-                        <h3>श्री कृष्ण जन्माष्टमी</h3>
-                        <p>भगवान कृष्ण के जन्मदिन पर भव्य उत्सव। मध्यरात्रि में विशेष आरती और प्रसाद वितरण।</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="section">
-                <h2>📅 वार्षिक कैलेंडर</h2>
-                <div class="events-grid">
-                    <div class="event-card">
-                        <h3>नवरात्रि (अप्रैल/अक्टूबर)</h3>
-                        <p>9 दिनों तक चलने वाला महत्वपूर्ण त्योहार जिसमें माता दुर्गा की पूजा होती है।</p>
-                    </div>
-                    <div class="event-card">
-                        <h3>दिवाली (नवंबर)</h3>
-                        <p>रोशनी का त्योहार। मंदिर में विशेष दीप प्रज्वलन और लक्ष्मी पूजन।</p>
-                    </div>
-                    <div class="event-card">
-                        <h3>होली (मार्च)</h3>
-                        <p>रंगों का त्योहार। भगवान कृष्ण के साथ होली खेलने का पारंपरिक उत्सव।</p>
-                    </div>
-                </div>
-            </section> -->
             <section id="charity" class="section">
               <div class="container">
                 <h2>🤝 सेवा कार्य </h2>
@@ -891,40 +864,6 @@
     </footer>
 
     <script>
-        // Hero slider functionality
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.hero-slide');
-        const totalSlides = slides.length;
-
-        function nextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % totalSlides;
-            slides[currentSlide].classList.add('active');
-        }
-
-        setInterval(nextSlide, 4000); // Change slide every 4 seconds
-
-        // Rotating dohas
-        const dohas = [
-            // "राधा कृष्ण राधा कृष्ण कृष्ण कृष्ण राधा राधा<br>राधा श्याम राधा श्याम श्याम श्याम राधा राधा",
-            // "हरे कृष्ण हरे कृष्ण कृष्ण कृष्ण हरे हरे<br>हरे राम हरे राम राम राम हरे हरे",
-            // "राधे राधे गोविंद गोविंद राधे<br>राधे राधे गोपाल गोपाल राधे",
-            // "श्री कृष्ण गोविंद हरे मुरारी<br>हे नाथ नारायण वासुदेव",
-            // "जय जय श्री राधे श्याम<br>जय जय जय श्री राधे श्याम"
-            "सतगुरु स्वामी बाबा रामदास साहिब की जय",
-            "सतगुरु स्वामी जय बाबा साहिब की जय"
-        ];
-
-        let currentDoha = 0;
-        const dohaElement = document.getElementById('rotating-doha');
-
-        function changeDoha() {
-            dohaElement.innerHTML = dohas[currentDoha];
-            currentDoha = (currentDoha + 1) % dohas.length;
-        }
-
-        setInterval(changeDoha, 5000); // Change doha every 5 seconds
-
         // Smooth scrolling for navigation links
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
