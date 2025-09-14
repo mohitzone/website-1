@@ -126,7 +126,11 @@
             padding: 2rem;
             border-radius: 10px;
             backdrop-filter: blur(10px);
-            margin-top: 100px;
+            margin-top: 500px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
 
         .hero h1 {
@@ -494,6 +498,87 @@
             display: none;
           }
         }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: #fdf6e3;
+            margin: 5% auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 1200px;
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 25px;
+            top: 10px;
+            font-size: 35px;
+            cursor: pointer;
+            color: #ff6b35;
+        }
+
+        .jaibaba-gallery {
+            margin-top: 20px;
+        }
+
+        .jaibaba-photos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .jaibaba-photos img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .jaibaba-photos img:hover {
+            transform: scale(1.05);
+        }
+
+        .download-tip {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background: #fff3cd;
+            border-radius: 5px;
+            color: #856404;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 10% auto;
+                width: 95%;
+            }
+            
+            .jaibaba-photos {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .jaibaba-photos img {
+                height: 180px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -522,6 +607,7 @@
         <img class="hero-slide" src="images/image1.jpeg" alt="Mandir Image" />
         <img class="hero-slide" src="images/image3.jpeg" alt="Mandir Image" />
         <img class="hero-slide" src="images/image4.jpeg" alt="Mandir Image" />
+        <img class="hero-slide" src="images/dec-invite.jpeg" alt="Mandir Image" />
       </div>
       <div class="hero-content">
         <h1>निजधाम आश्रम में आपका स्वागत है</h1>
@@ -536,6 +622,7 @@
     "सतगुरु स्वामी जय बाबा साहिब की जय",
     "स्वामी विशनदास साहिब की जय",
     "दादा दयाल दास साहिब की जय",
+    "12वाँ स्थापना वर्ष",
   ];
 
         let currentDoha = 0;
@@ -763,11 +850,58 @@
                 <h2>📸 फोटो गैलरी</h2>
                 <div class="photo-gallery">
                     <div class="photo-item">मुख्य मंदिर</div>
-                    <div class="photo-item">राधा कृष्ण मूर्ति</div>
-                    <div class="photo-item">आरती समय</div>
+                    <div class="photo-item" onclick="showJaiBabaGallery()">जय बाबा साहिब जी की तस्वीरें</div>
+                    <!-- <div class="photo-item">आरती समय</div>
                     <div class="photo-item">त्योहार उत्सव</div>
                     <div class="photo-item">सत्संग हॉल</div>
-                    <div class="photo-item">प्रसाद वितरण</div>
+                    <div class="photo-item">प्रसाद वितरण</div> -->
+                </div>
+
+                <!-- Modal for JaiBaba Photos -->
+                <div id="jaibaba-modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-modal" onclick="closeModal()">&times;</span>
+                        <h2>श्री जय बाबा साहिब जी</h2>
+                        <div class="jaibaba-gallery">
+                            <div class="jaibaba-photos">
+                                <img src="jaibaba images/jaibaba.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba1.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba2.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba3.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba4.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba5.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba6.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba7.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba8.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba9.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba10.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba11.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba12.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba13.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba14.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba15.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba16.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba17.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba18.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba19.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba20.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba21.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba22.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba23.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba24.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba25.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba26.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba27.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba28.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba29.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba30.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba31.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba32.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                                <img src="jaibaba images/jaibaba33.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy">
+                            </div>
+                            <p class="download-tip">टिप: किसी भी फोटो पर क्लिक करें उसे डाउनलोड करने के लिए</p>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -888,6 +1022,44 @@
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'translateY(0) scale(1)';
             });
+        });
+    </script>
+
+    <!-- Gallery Modal Scripts -->
+    <script>
+        function showJaiBabaGallery() {
+            document.getElementById('jaibaba-modal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('jaibaba-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal if clicking outside of content
+        window.onclick = function(event) {
+            const modal = document.getElementById('jaibaba-modal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Download image function
+        function downloadImage(imgSrc) {
+            const link = document.createElement('a');
+            link.href = imgSrc;
+            link.download = 'jaibaba-photo.jpg';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
         });
     </script>
 </body>
