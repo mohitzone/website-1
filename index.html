@@ -415,6 +415,11 @@
           padding: 1rem;
           border-radius: 10px;
           box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+          transition: transform 0.3s ease;
+        }
+
+        .audio-card:hover {
+          transform: translateY(-5px);
         }
         
         .audio-card h4 {
@@ -426,7 +431,164 @@
         .audio-card audio {
           width: 100%;
           border-radius: 6px;
+          margin-bottom: 0.5rem;
         }
+
+        .download-btn {
+          display: inline-block;
+          padding: 5px 10px;
+          background: #fff;
+          border-radius: 5px;
+          color: #d35400;
+          text-decoration: none;
+          font-size: 0.9rem;
+          transition: background 0.3s ease;
+        }
+
+        .download-btn:hover {
+          background: #ffeaa7;
+        }
+
+        .load-more-btn {
+          text-align: center;
+          margin-top: 2rem;
+        }
+
+        .load-more-btn button {
+          padding: 10px 20px;
+          background: #ff6b35;
+          color: white;
+          border: none;
+          border-radius: 25px;
+          cursor: pointer;
+          font-size: 1rem;
+          transition: all 0.3s ease;
+        }
+
+        .load-more-btn button:hover {
+          background: #f7931e;
+          transform: translateY(-2px);
+        }
+
+
+
+
+
+
+        .audio-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.audio-item {
+  position: relative;
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.audio-item:hover {
+  transform: translateY(-5px);
+}
+
+.audio-player-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+.audio-card {
+  background: linear-gradient(135deg, #fdcb6e, #ffeaa7);
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.audio-card:hover {
+  transform: translateY(-5px);
+}
+
+.audio-card h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #d35400;
+}
+
+.audio-card audio {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.download-btn {
+  display: inline-block;
+  padding: 5px 10px;
+  background: #fff;
+  border-radius: 5px;
+  color: #d35400;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.download-btn:hover {
+  background: #ffeaa7;
+}
+
+/* Audio Modal Styles */
+#audio-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.9);
+  overflow-y: auto;
+}
+
+#audio-modal .modal-content {
+  background-color: #fdf6e3;
+  margin: 5% auto;
+  padding: 20px;
+  width: 90%;
+  max-width: 1200px;
+  border-radius: 15px;
+  position: relative;
+}
+
+.modal-title {
+  color: #ff6b35;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.search-box {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.search-box input {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  border: 2px solid #ff6b35;
+  border-radius: 25px;
+  font-size: 1rem;
+}
 
         /* Footer */
         footer {
@@ -485,6 +647,54 @@
           right: 10px;
           text-align: right;
         }
+
+        .audio-sections {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.audio-section {
+  margin-bottom: 1.5rem;
+  border: 1px solid #ff6b35;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.section-header {
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.section-header:hover {
+  background: linear-gradient(135deg, #f7931e, #ff6b35);
+}
+
+.section-header h3 {
+  color: white;
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.toggle-icon {
+  color: white;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.toggle-icon.active {
+  transform: rotate(180deg);
+}
+
+.audio-content {
+  background: #fff;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
         
         /* Optional smooth fade-in */
         @keyframes fadeIn {
@@ -945,48 +1155,522 @@
             </section>
 
             <section class="section">
-              <h2>🎵 आध्यात्मिक ऑडियो</h2>
-              <div class="audio-player-grid">
-            
-                <div class="audio-card">
-                  <h4>सत्संग 1</h4>
-                  <audio controls>
-                    <source src="audio/AUD-20240630-WA0011.mp3" type="audio/mp3">
-                    आपका ब्राउज़र ऑडियो चलाने में असमर्थ है।
-                  </audio>
+  <h2>🎵 भजन एवं प्रवचन – जय बाबा द्वारा</h2>
+  
+  <div class="audio-gallery">
+    <div class="audio-item" onclick="showAudioGallery('pravachan')">प्रवचन </div>
+    <div class="audio-item" onclick="showAudioGallery('bhajan')">भजन </div>
+  </div>
+
+  <div id="audio-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeAudioModal()">&times;</span>
+      <div id="audio-gallery-content"></div>
+    </div>
+  </div>
+</section>
+<!-- Audio Gallery Scripts -->
+<script>
+    function showAudioGallery(type) {
+        const modal = document.getElementById('audio-modal');
+        const content = document.getElementById('audio-gallery-content');
+        
+        // Clear previous content
+        content.innerHTML = '';
+        
+        // Add title and search box
+        content.innerHTML = `
+            <h2 class="modal-title">${type === 'pravachan' ? 'प्रवचन (Discourses)' : 'भजन (Devotional Songs)'}</h2>
+            <div class="search-box">
+                <input type="text" placeholder="Search..." onkeyup="filterAudios(this.value, '${type}')">
+            </div>
+            <div class="audio-player-grid" id="${type}-grid"></div>
+        `;
+
+        // Load content based on type
+        if (type === 'pravachan') {
+            loadPravachanContent();
+        } else {
+            loadBhajanContent();
+        }
+
+        modal.style.display = 'block';
+    }
+
+    function loadPravachanContent() {
+        const grid = document.getElementById('pravachan-grid');
+        
+        // Add 001-009 format files
+        for (let i = 1; i <= 9; i++) {
+            const paddedNum = `00${i}`;
+            addAudioCard(grid, paddedNum, paddedNum);
+        }
+        
+        // Add 01-043 format files
+        for (let i = 1; i <= 43; i++) {
+            const num = i < 10 ? `0${i}` : i;
+            addAudioCard(grid, num, num);
+        }
+    }
+
+    function loadBhajanContent() {
+        const grid = document.getElementById('bhajan-grid');
+        const bhajans = [
+            { title: 'लोली जय बाबा', file: 'loli jaibaba.mp3' },
+            { title: 'सत्संग में थाई मज़ा मज़ा', file: 'satsang mai thai maza maza.mp3' }
+        ];
+        
+        bhajans.forEach(bhajan => {
+            const card = document.createElement('div');
+            card.className = 'audio-card';
+            card.innerHTML = `
+                <h4>${bhajan.title}</h4>
+                <audio controls>
+                    <source src="jaibaba audios/${bhajan.file}" type="audio/mpeg">
+                </audio>
+                <a href="jaibaba audios/${bhajan.file}" download class="download-btn">⬇️ डाउनलोड</a>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    function addAudioCard(grid, displayNum, fileNum) {
+        const card = document.createElement('div');
+        card.className = 'audio-card';
+        card.innerHTML = `
+            <h4>प्रवचन ${displayNum}</h4>
+            <audio controls>
+                <source src="jaibaba audios/${fileNum}.mp3" type="audio/mpeg">
+            </audio>
+            <a href="jaibaba audios/${fileNum}.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+        `;
+        grid.appendChild(card);
+    }
+
+    function filterAudios(searchText, type) {
+        const grid = document.getElementById(`${type}-grid`);
+        const cards = grid.getElementsByClassName('audio-card');
+        
+        Array.from(cards).forEach(card => {
+            const title = card.querySelector('h4').innerText.toLowerCase();
+            if (title.includes(searchText.toLowerCase())) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+
+    function closeAudioModal() {
+        document.getElementById('audio-modal').style.display = 'none';
+        // Stop all playing audio when modal is closed
+        document.querySelectorAll('audio').forEach(audio => audio.pause());
+    }
+
+    // Close modal when clicking outside
+    window.onclick = function(event) {
+        const modal = document.getElementById('audio-modal');
+        if (event.target === modal) {
+            closeAudioModal();
+        }
+    }
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeAudioModal();
+        }
+    });
+</script>
+
+                  <div class="audio-content" id="pravachan-content" style="display: none;">
+                    <div class="audio-player-grid">
+                  <!-- 001-009 format files -->
+                  <div class="audio-card">
+                    <h4>प्रवचन 001</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/001.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/001.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 002</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/002.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/002.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 003</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/003.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/003.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 004</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/004.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/004.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 005</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/005.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/005.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 006</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/006.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/006.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 007</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/007.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/007.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 008</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/008.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/008.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 009</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/009.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/009.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+
+                  <!-- 01-043 format files -->
+                  <div class="audio-card">
+                    <h4>प्रवचन 01</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/01.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/01.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 02</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/02.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/02.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 03</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/03.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/03.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 04</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/04.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/04.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 05</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/05.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/05.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 06</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/06.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/06.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 07</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/07.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/07.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 08</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/08.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/08.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 010</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/010.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/010.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 011</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/011.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/011.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 012</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/012.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/012.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 013</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/013.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/013.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 014</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/014.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/014.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 015</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/015.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/015.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 016</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/016.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/016.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 017</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/017.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/017.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 018</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/018.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/018.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 019</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/019.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/019.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 020</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/020.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/020.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 021</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/021.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/021.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 022</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/022.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/022.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 023</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/023.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/023.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 024</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/024.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/024.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 025</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/025.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/025.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 026</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/026.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/026.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 027</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/027.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/027.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 028</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/028.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/028.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 029</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/029.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/029.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 030</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/30.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/30.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 031</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/031.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/031.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 032</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/032.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/032.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 033</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/033.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/033.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 034</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/034.MP3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/034.MP3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 035</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/035.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/035.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 036</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/036.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/036.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 037</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/037.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/037.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 038</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/038.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/038.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 039</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/039.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/039.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 040</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/040.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/040.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 041</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/041.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/041.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 042</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/042.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/042.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
+                  <div class="audio-card">
+                    <h4>प्रवचन 043</h4>
+                    <audio controls>
+                      <source src="jaibaba audios/043.mp3" type="audio/mpeg">
+                    </audio>
+                    <a href="jaibaba audios/043.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+                  </div>
                 </div>
-            
-                <div class="audio-card">
-                  <h4>सत्संग 2</h4>
-                  <audio controls>
-                    <source src="audio/AUD-20240630-WA0011.mp3" type="audio/mp3">
-                    Your browser does not support audio playback.
-                  </audio>
-                </div>
-            
-                <div class="audio-card">
-                  <h4>सत्संग 3</h4>
-                  <audio controls>
-                    <source src="audio/AUD-20240630-WA0011.mp3" type="audio/mp3">
-                  </audio>
-                </div>
-            
-                <div class="audio-card">
-                  <h4>सत्संग 4</h4>
-                  <audio controls>
-                    <source src="audio/AUD-20240630-WA0011.mp3" type="audio/mp3">
-                  </audio>
-                </div>
-            
-                <div class="audio-card">
-                  <h4>सत्संग 5</h4>
-                  <audio controls>
-                    <source src="audio/AUD-20240630-WA0011.mp3" type="audio/mp3">
-                  </audio>
-                </div>
-            
               </div>
-            </section>
+
+               <div class="audio-section">
+      
+      <div class="audio-content" id="bhajan-content" style="display: none;">
+        <div class="audio-player-grid">
+          <div class="audio-card">
+            <h4>लोली जय बाबा</h4>
+            <audio controls>
+              <source src="jaibaba audios/loli jaibaba.mp3" type="audio/mpeg">
+            </audio>
+            <a href="jaibaba audios/loli jaibaba.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+          </div>
+          <div class="audio-card">
+            <h4>सत्संग में थाई मज़ा मज़ा</h4>
+            <audio controls>
+              <source src="jaibaba audios/satsang mai thai maza maza.mp3" type="audio/mpeg">
+            </audio>
+            <a href="jaibaba audios/satsang mai thai maza maza.mp3" download class="download-btn">⬇️ डाउनलोड</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
         </div>
     </main>
 
