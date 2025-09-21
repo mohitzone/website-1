@@ -11,7 +11,13 @@ const AUDIO_DATA = {
   ],
   bhajan: [
     'loli jaibaba.mp3',
-    'satsang mai thai maza maza.mp3'
+  'satsang mai thai maza maza.mp3',
+  'mahima kahidi au chawan.mp3',
+  'bajgovind bhul matja.mp3',
+  'jaiho-jaiho.mp3',
+  'sant ka sang.mp3'
+
+
   ]
 };
 // Make available in browser global

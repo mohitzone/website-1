@@ -7,15 +7,37 @@
   <meta name="description" content="प्रवचन — जय बाबा साहिब जी के प्रवचन रिकॉर्डिंग्स।">
   <link rel="icon" href="../../images/sant-name.jpg">
   <style>
-    body{font-family:Arial,Helvetica,sans-serif;margin:20px;color:#111}
-    .container{max-width:900px;margin:0 auto}
-    .back{display:inline-block;margin-bottom:12px}
-    .search{margin:12px 0}
-    .audio-player-grid{display:grid;grid-template-columns:1fr;gap:14px}
-  .audio-card{padding:12px;border:1px solid #eee;border-radius:6px;background:#fff;display:flex;flex-direction:column;gap:8px}
-  .download-btn{display:inline-flex;align-items:center;gap:8px;margin-top:6px;padding:8px 10px;background:transparent;color:#0078d4;border-radius:6px;text-decoration:none;border:1px solid rgba(0,0,0,0.06)}
-  .icon-btn{width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:#fff;border:1px solid rgba(0,0,0,0.06);color:#0078d4;text-decoration:none}
-  .icon-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+  :root{--accent:#d35400;--accent-2:#ff6b35;--surface:#ffffff;--muted:#6b6b6b}
+    html,body{height:100%}
+    body{
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      margin:0; color:#111; background: linear-gradient(180deg,#fbfbfd 0%, #f3f7fc 100%);
+      -webkit-font-smoothing:antialiased; padding:28px 18px;
+    }
+    .container{max-width:980px;margin:0 auto;background:var(--surface);border-radius:12px;padding:22px;box-shadow:0 8px 30px rgba(16,24,40,0.06)}
+    header.page-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+    h1{font-size:20px;margin:0;color:#0f172a}
+    .back{display:inline-block;color:var(--muted);text-decoration:none;font-size:14px}
+    .search{margin:14px 0}
+    .search input{width:100%;padding:10px 12px;border-radius:10px;border:1px solid rgba(15,23,42,0.06);box-shadow:inset 0 1px 0 rgba(255,255,255,0.6);font-size:14px}
+
+    .audio-player-grid{display:flex;flex-direction:column;gap:12px}
+    .audio-card{
+      display:grid;grid-template-columns:1fr 52px;align-items:center;gap:12px;padding:14px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(250,250,255,0.95));border:1px solid rgba(15,23,42,0.04);
+      transition:transform .12s ease,box-shadow .12s ease;
+    }
+    .audio-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(2,6,23,0.08)}
+    .audio-card h4{margin:0 0 6px 0;font-size:16px;color:#0b1220}
+    .audio-card audio{width:100%;outline:none}
+    .download-btn{display:inline-flex;align-items:center;gap:8px;margin-top:6px;padding:8px 10px;background:transparent;color:var(--accent);border-radius:8px;text-decoration:none;border:1px solid rgba(0,0,0,0.04)}
+    .icon-btn{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:var(--surface);border:1px solid rgba(0,0,0,0.06);color:var(--accent);text-decoration:none}
+    .icon-btn svg{display:block}
+    .icon-btn:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(2,6,23,0.08)}
+
+    @media (max-width:640px){
+      .audio-card{grid-template-columns:1fr;}
+      .icon-btn{justify-self:start}
+    }
   </style>
 </head>
 <body>
@@ -44,7 +66,7 @@
           </audio>
           <div style="display:flex;align-items:center;gap:8px;margin-top:6px">
             <a class="icon-btn" href="../../jaibaba audios/${encodeURIComponent(f)}" download title="डाउनलोड">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v10" stroke="#0078d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="#0078d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 10l5 5 5-5" stroke="#0078d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v10" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 10l5 5 5-5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
           </div>
         `;
