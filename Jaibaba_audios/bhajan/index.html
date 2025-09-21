@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>भजन — जय बाबा</title>
+  <meta name="description" content="भजन — भक्ति गीत और भजन रिकॉर्डिंग्स।">
+  <link rel="icon" href="../../images/sant-name.jpg">
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;margin:20px;color:#111}
+    .container{max-width:900px;margin:0 auto}
+    .back{display:inline-block;margin-bottom:12px}
+    .search{margin:12px 0}
+    .audio-player-grid{display:grid;grid-template-columns:1fr;gap:14px}
+  .audio-card{padding:12px;border:1px solid #eee;border-radius:6px;background:#fff;display:flex;flex-direction:column;gap:8px}
+  .download-btn{display:inline-flex;align-items:center;gap:8px;margin-top:6px;padding:8px 10px;background:transparent;color:#0078d4;border-radius:6px;text-decoration:none;border:1px solid rgba(0,0,0,0.06)}
+  .icon-btn{width:36px;height:36px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:#fff;border:1px solid rgba(0,0,0,0.06);color:#0078d4;text-decoration:none}
+  .icon-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../../index.html" class="back">← वापस</a>
+    <h1>भजन (Devotional songs)</h1>
+    <div class="search"><input id="search" placeholder="खोजें..." style="width:100%;padding:8px"/></div>
+    <div id="grid" class="audio-player-grid"></div>
+  </div>
+
+  <script src="../../audio-data.js"></script>
+  <script>
+    const grid = document.getElementById('grid');
+    const list = (window.AUDIO_DATA && window.AUDIO_DATA.bhajan) ? window.AUDIO_DATA.bhajan : [];
+    function render(items){
+      grid.innerHTML = '';
+      items.forEach(f => {
+        const title = f.replace(/\.mp3$/i,'');
+        const card = document.createElement('div');
+        card.className = 'audio-card';
+        card.innerHTML = `
+          <h4>${title}</h4>
+          <audio controls preload="none">
+            <source src="../../jaibaba audios/${encodeURIComponent(f)}" type="audio/mpeg">
+            आपका ब्राउज़र ऑडियो प्ले नहीं कर रहा।
+          </audio>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:6px">
+            <a class="icon-btn" href="../../jaibaba audios/${encodeURIComponent(f)}" download title="डाउनलोड">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v10" stroke="#0078d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="#0078d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 10l5 5 5-5" stroke="#0078d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+    render(list);
+
+    document.getElementById('search').addEventListener('input', function(){
+      const q = this.value.toLowerCase();
+      render(list.filter(f=>f.toLowerCase().includes(q)));
+    });
+  </script>
+</body>
+</html>
