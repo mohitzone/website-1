@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>जय बाबा साहिब जी की तस्वीरें — निजधाम आश्रम</title>
+  <meta name="description" content="जय बाबा साहिब जी की तस्वीरों का संग्रह — डाउनलोड के लिए क्लिक करें।">
+  <link rel="icon" href="../images/sant-name.jpg">
+  <style>
+    :root{--accent:#d35400;--accent-2:#ff6b35;--muted:#6b6b6b}
+    body { font-family: Arial, Helvetica, sans-serif; margin:0; padding:20px; background: linear-gradient(135deg,#ffeaa7,#fab1a0); color:#111 }
+    .container { max-width:1100px; margin:0 auto; background:linear-gradient(135deg,#fff8ef,#fffdfc); border-radius:14px; padding:18px; box-shadow:0 10px 30px rgba(0,0,0,0.06)}
+    h1 { text-align:center; color:var(--accent) }
+    .back { margin: 10px 0; display:inline-block; color:var(--muted) }
+    .jaibaba-photos { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px }
+    .jaibaba-photos img { width:100%; height:auto; display:block; border-radius:8px; cursor:pointer; border:6px solid #fff; box-shadow:0 8px 30px rgba(0,0,0,0.08) }
+    .download-tip { text-align:center; color:#6b6b6b; margin-top:8px }
+    .photo-card { position:relative }
+    .photo-actions { position:absolute; right:8px; top:8px; display:flex; gap:8px }
+    .btn { background:var(--accent);color:#fff;padding:6px 10px;border-radius:6px;text-decoration:none;font-size:14px }
+    .icon-btn {
+      width:40px; height:40px; display:inline-flex; align-items:center; justify-content:center; border-radius:50%;
+      background: #fff; color: var(--accent); text-decoration:none; border:1px solid rgba(0,0,0,0.06); box-shadow:0 4px 14px rgba(0,0,0,0.06);
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .icon-btn:hover{ transform: translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,0.12) }
+    .icon-btn svg{ display:block }
+  </style>
+</head>
+<body>
+  <div class="container">
+  <a href="../index.html" class="back">← मुख्य पृष्ठ पर वापिस जाएँ</a>
+    <h1>जय बाबा साहिब जी की तस्वीरें</h1>
+    <p class="download-tip">टिप: किसी भी फोटो पर क्लिक करें उसे बड़ा देखने और डाउनलोड करने के लिए।</p>
+
+    <div class="jaibaba-photos" id="gallery-grid">
+      <!-- Images will be populated here -->
+    </div>
+  </div>
+
+  <script>
+    // Image list copied from main page
+    const IMAGES = [
+      'jaibaba.jpeg','jaibaba1.jpeg','jaibaba2.jpeg','jaibaba3.jpeg','jaibaba4.jpeg','jaibaba5.jpeg','jaibaba6.jpeg','jaibaba7.jpeg','jaibaba8.jpeg','jaibaba9.jpeg','jaibaba10.jpeg','jaibaba11.jpeg','jaibaba12.jpeg','jaibaba13.jpeg','jaibaba14.jpeg','jaibaba15.jpeg','jaibaba16.jpeg','jaibaba17.jpeg','jaibaba18.jpeg','jaibaba19.jpeg','jaibaba20.jpeg','jaibaba21.jpeg','jaibaba22.jpeg','jaibaba23.jpeg','jaibaba24.jpeg','jaibaba25.jpeg','jaibaba26.jpeg','jaibaba27.jpeg','jaibaba28.jpeg','jaibaba29.jpeg','jaibaba30.jpeg','jaibaba31.jpeg','jaibaba32.jpeg','jaibaba33.jpeg'
+    ];
+
+    const grid = document.getElementById('gallery-grid');
+    IMAGES.forEach(img => {
+      const card = document.createElement('div');
+      card.className = 'photo-card';
+      card.innerHTML = `
+        <img src="../jaibaba images/${img}" alt="जय बाबा साहिब जी" loading="lazy" width="600" height="400" />
+        <div class="photo-actions">
+          <a class="icon-btn" href="../jaibaba images/${img}" download title="डाउनलोड करें">
+            <!-- download icon (svg) -->
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="icon-btn" href="../jaibaba images/${img}" target="_blank" rel="noopener" title="बड़ा देखें">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M15 3h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 14L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 21H3V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>

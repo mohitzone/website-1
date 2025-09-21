@@ -72,7 +72,7 @@ const saintsData = {
         उनके पिता का नाम ‘वरियोमल’ और माता का नाम ‘छजलबाई’ था। यह पावन जन्म 1 अप्रैल 1905 को रविवार के दिन (चैत्र मास, संवत 1962) अमृत वेले (सुबह के शुभ समय) हुआ।
         “जय बाबा” साहिबन के जन्म के समय प्रभात बेला में मानो आकाश से मोतियों और मणियों की वर्षा हो रही थी...<br><br>
     <iframe width="560" height="315" 
-        src="https://www.youtube.com/embed/vWt2y3RUt_0?start=25" 
+        src="https://www.youtube.com/embed/vWt2y3RUt_0?start=0" 
         title="जय बाबा साहिब जी जीवन गाथा" 
         frameborder="0" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
