@@ -21,6 +21,10 @@
             box-sizing: border-box;
         }
 
+  /* Make width calculations predictable and avoid horizontal overflow */
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { max-width: 100%; overflow-x: hidden; }
+
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
@@ -270,6 +274,10 @@
           line-height: 1.6;
           box-shadow: 0 2px 6px rgba(0,0,0,0.08);
           text-align: left;
+          /* allow long words/URLs/phone numbers to wrap */
+          overflow-wrap: anywhere;
+          word-break: break-word;
+          white-space: normal;
         }
         
         .contact-box a {
@@ -311,8 +319,8 @@
 
         .events-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 1.5rem;
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 1rem;
           margin-top: 1rem;
         }
         
@@ -322,6 +330,8 @@
           border-radius: 10px;
           box-shadow: 0 4px 10px rgba(0,0,0,0.1);
           transition: transform 0.3s ease;
+          overflow-wrap: anywhere;
+          word-break: break-word;
         }
         
         .event-card:hover {
@@ -411,6 +421,15 @@
         .contact-item h3 {
             color: #2d3436;
             margin-bottom: 0.5rem;
+        }
+
+        /* Small-screen adjustments to avoid card overflow */
+        @media (max-width: 420px) {
+          .section { padding: 12px; }
+          .saints-grid, .locations-grid, .charity-grid, .audio-player-grid { grid-template-columns: 1fr; gap: 1rem; }
+          .location-card, .saint-card, .contact-item { padding: 12px; }
+          .location-card img, .saint-card img { max-height: 160px; }
+          .section h2 { font-size: 1.4rem; }
         }
 
         .audio-player-grid {
