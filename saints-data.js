@@ -172,13 +172,18 @@ const saintsData = {
 
 
 <br><br>
-    <iframe width="560" height="315" 
-        src="https://www.youtube.com/embed/vWt2y3RUt_0?start=0" 
-        title="जय बाबा साहिब जी जीवन गाथा" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-</iframe>
+    <div style="position: relative; width: 100%; max-width: 800px; margin: 0 auto; height: 0; padding-bottom: 56.25%;">
+  <iframe 
+      src="https://www.youtube.com/embed/vWt2y3RUt_0?start=0"
+      title="जय बाबा साहिब जी जीवन गाथा"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+  </iframe>
+</div>
+
+
 <br><br>`
 
     }
