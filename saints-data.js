@@ -921,8 +921,6 @@ const saintsData = {
 </div>
 
 
-</div>
-
 
 <div style="text-align:center; color:#b8860b; font-size:3em; font-weight:bold; margin-top:20px;">
 
