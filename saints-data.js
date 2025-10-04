@@ -901,8 +901,9 @@ const saintsData = {
     ✍️ लेखक: <b>उदासी (स्वामी तिलोकिदासु)</b>
   </div>
 
-  <!-- Song Audio -->
-  <div style="
+ <!-- Song Audio -->
+<div style="
+    width: 90%;
     max-width: 400px;
     margin: 20px auto;
     padding: 10px;
@@ -911,12 +912,14 @@ const saintsData = {
     border-radius: 12px;
     box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
     text-align: center;
+    box-sizing: border-box;
 ">
-  <audio controls style="width:100%;">
+  <audio controls style="width: 100%;">
     <source src="jaibaba%20audios/jaiho-jaiho-jaiho-sacha-satgur.mp3" type="audio/mpeg">
     आपका ब्राउज़र ऑडियो प्लेयर को सपोर्ट नहीं करता।
   </audio>
 </div>
+
 
 </div>
 
