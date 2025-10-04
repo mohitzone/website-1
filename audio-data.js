@@ -14,7 +14,7 @@ const AUDIO_DATA = {
   'satsang mai thai maza maza.mp3',
   'mahima kahidi au chawan.mp3',
   'bajgovind bhul matja.mp3',
-  'jaiho-jaiho.mp3',
+  'jaiho-jaiho-jaiho-sacha-satgur.mp3',
   'sant ka sang.mp3'
 
 
