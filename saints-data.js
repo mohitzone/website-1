@@ -901,23 +901,27 @@ const saintsData = {
     ✍️ लेखक: <b>उदासी (स्वामी तिलोकिदासु)</b>
   </div>
 
- <!-- Song Audio -->
 <div style="
-    width: 90%;
-    max-width: 400px;
-    margin: 20px auto;
-    padding: 10px;
-    background: #fffaf0;
-    border: 2px solid #b8860b;
-    border-radius: 12px;
-    box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
-    text-align: center;
-    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
 ">
-  <audio controls style="width: 100%;">
-    <source src="jaibaba%20audios/jaiho-jaiho-jaiho-sacha-satgur.mp3" type="audio/mpeg">
-    आपका ब्राउज़र ऑडियो प्लेयर को सपोर्ट नहीं करता।
-  </audio>
+  <div style="
+      width: 100%;
+      max-width: 400px;
+      background: #fffaf0;
+      border: 2px solid #b8860b;
+      border-radius: 12px;
+      box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
+      padding: 8px;
+      box-sizing: border-box;
+  ">
+    <audio controls style="width: 100%;">
+      <source src="jaibaba%20audios/jaiho-jaiho-jaiho-sacha-satgur.mp3" type="audio/mpeg">
+      आपका ब्राउज़र ऑडियो प्लेयर को सपोर्ट नहीं करता।
+    </audio>
+  </div>
+</div>
 </div>
 
 
