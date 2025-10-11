@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>निजधाम आश्रम</title>
-  <meta name="description" content="निजधाम आश्रम - सत्संग, भजन, सेवा और जय बाबा साहिब की शिक्षाएँ। आश्रमों के पते, कार्यक्रम और ऑडियो गैलरी यहाँ उपलब्ध हैं।">
+  <meta name="description" content="निजधाम आश्रम - सत्संग, भजन, सेवा और जयबाबा साहिब की शिक्षाएँ। आश्रमों के पते, कार्यक्रम और ऑडियो गैलरी यहाँ उपलब्ध हैं।">
   <link rel="canonical" href="index.html">
   <link rel="icon" href="images/sant-name.jpg">
   <!-- Open Graph / Twitter -->
   <meta property="og:title" content="निजधाम आश्रम" />
-  <meta property="og:description" content="निजधाम आश्रम - सत्संग, भजन, सेवा और जय बाबा साहिब की शिक्षाएँ।" />
+  <meta property="og:description" content="निजधाम आश्रम - सत्संग, भजन, सेवा और जयबाबा साहिब की शिक्षाएँ।" />
   <meta property="og:image" content="images/image1.jpeg" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -831,6 +831,33 @@
                 height: 180px;
             }
         }
+
+        /* Social links */
+        .social-links {
+          display: flex;
+          gap: 14px;
+          justify-content: center;
+          align-items: center;
+          margin: 14px 0 8px 0;
+        }
+        .social-links a {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 56px;
+          height: 56px;
+          background: #fff;
+          border-radius: 50%;
+          color: #ff6b35;
+          text-decoration: none;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+          transition: transform .15s ease, box-shadow .15s ease;
+        }
+        .social-links a:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+        }
+        .social-links svg { width: 28px; height: 28px; display:block; }
     </style>
 </head>
 <body>
@@ -879,7 +906,7 @@
   <script>
     const dohas = [
       "सतगुरु स्वामी बाबा रामदास साहिब की जय",
-      "सतगुरु स्वामी जय बाबा साहिब की जय",
+      "सतगुरु स्वामी जयबाबा साहिब की जय",
       "स्वामी विशनदास साहिब की जय",
       "दादा दयाल दास साहिब की जय",
       "12वाँ स्थापना वर्ष",
@@ -939,10 +966,10 @@
 
         <!-- Jai Baba Sahib -->
         <div class="saint-card">
-            <img src="images/sant-name.jpg" alt="जय बाबा साहिब जी" />
-            <h3>जय बाबा साहिब जी</h3>
+            <img src="images/sant-name.jpg" alt="जयबाबा साहिब जी" />
+            <h3>जयबाबा साहिब जी</h3>
             <p>
-                परम पूज्य गुरु महाराज “जय बाबा साहिबन” का जन्म सिन्धु नदी के किनारे स्थित सक्खर नगर में हुआ।
+                परम पूज्य गुरु महाराज “जयबाबा साहिबन” का जन्म सिन्धु नदी के किनारे स्थित सक्खर नगर में हुआ।
             </p>
             <a href="saint.html?id=jaibaba" class="read-more">और जानने के लिए यहाँ क्लिक करें</a>
         </div>
@@ -1100,7 +1127,7 @@
                 <h2>📸 फोटो गैलरी</h2>
                 <div class="photo-gallery">
                     <!-- <div class="photo-item">मुख्य मंदिर</div> -->
-                    <a href="Jaibaba_photos/" class="photo-item" aria-label="जय बाबा साहिब जी की तस्वीरें">जय बाबा साहिब जी की तस्वीरें</a>
+                    <a href="Jaibaba_photos/" class="photo-item" aria-label="जयबाबा साहिब जी की तस्वीरें">जयबाबा साहिब जी की तस्वीरें</a>
                     <!-- <div class="photo-item">आरती समय</div>
                     <div class="photo-item">त्योहार उत्सव</div>
                     <div class="photo-item">सत्संग हॉल</div>
@@ -1111,7 +1138,7 @@
         <div id="jaibaba-modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
           <div class="modal-content" role="document">
             <button class="close-modal" onclick="closeModal()" aria-label="बन्द करें">&times;</button>
-            <h2>श्री जय बाबा साहिब जी</h2>
+            <h2>श्री जयबाबा साहिब जी</h2>
                         <div class="jaibaba-gallery">
                             <div class="jaibaba-photos">
                                 <img src="jaibaba images/jaibaba.jpeg" alt="जय बाबा साहिब जी" onclick="downloadImage(this.src)" loading="lazy" width="600" height="400">
@@ -1241,7 +1268,7 @@
 
 
             <section class="section">
-  <h2>🎵 भजन एवं प्रवचन – जय बाबा द्वारा</h2>
+  <h2>🎵 भजन एवं प्रवचन – जयबाबा द्वारा</h2>
   
   <div class="audio-gallery">
     <a class="audio-item" href="Jaibaba_audios/pravachan/">प्रवचन</a>
@@ -1406,7 +1433,23 @@
     <footer>
         <div class="container">
             <p>&copy; 2025 निजधाम आश्रम, ग्वालियर । सभी अधिकार सुरक्षित।</p>
-            <p>जय बाबा साहिब की जय 🙏</p>
+            <div class="social-links" aria-label="सोशल मीडिया लिंक">
+              <a href="https://www.youtube.com/@nijdhamashramgwalior8232" target="_blank" rel="noopener" aria-label="YouTube" style="background:#ff0000;color:#fff">
+                <!-- YouTube (filled play) -->
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M23.5 6.2s-.2-1.7-.8-2.5C21.9 2.6 20.9 2.6 20.5 2.5 17 2 12 2 12 2s-5 0-8.5.5c-.4 0-1.4.1-2.2 1.2C.9 4.6.7 6.3.7 6.3S0 8 0 9.8v2.4C0 14 .2 15.6.8 16.4c.8 1.1 1.9 1.1 2.4 1.2C6.6 18.1 12 18.5 12 18.5s5 0 8.5-.5c.4 0 1.4-.1 2.2-1.2.6-.8.8-2.4.8-2.4s.1-1.6.1-3.4V9.8c0-1.8-.1-3.6-.1-3.6zM9.8 15.1V8.9l6.2 3.1-6.2 3.1z"/></svg>
+              </a>
+
+              <a href="https://www.facebook.com/share/1F9qCeZhXy/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook" style="background:#1877F2;color:#fff">
+                <!-- Facebook 'f' -->
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07c0 4.98 3.66 9.11 8.44 9.91v-7.02H7.9v-2.89h2.54V9.2c0-2.5 1.49-3.88 3.77-3.88 1.09 0 2.23.2 2.23.2v2.45h-1.25c-1.23 0-1.61.77-1.61 1.56v1.87h2.74l-.44 2.89h-2.3v7.02C18.34 21.18 22 17.05 22 12.07z"/></svg>
+              </a>
+
+              <a href="https://www.instagram.com/nijdham_ashram_gwalior?igsh=cTlucGpveGd2NG52&utm_source=qr" target="_blank" rel="noopener" aria-label="Instagram" style="background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); color:#fff">
+                <!-- Instagram glyph (camera) -->
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6.2A3.8 3.8 0 1 0 15.8 12 3.8 3.8 0 0 0 12 8.2zM18.6 6.4a1.1 1.1 0 1 0 1.1 1.1 1.1 1.1 0 0 0-1.1-1.1zM12 15.5A3.5 3.5 0 1 1 15.5 12 3.5 3.5 0 0 1 12 15.5z"/></svg>
+              </a>
+            </div>
+            <p>जयबाबा साहिब की जय 🙏</p>
         </div>
     </footer>
 
@@ -1497,6 +1540,7 @@
       document.body.removeChild(link);
     }
     </script>
+    
 </body>
 <!-- <div class="side-doha left-doha">
   <p>"संतों की वाणी अमृत तुल्य है।"</p>
