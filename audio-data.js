@@ -10,10 +10,10 @@ const AUDIO_DATA = {
     '040.mp3','041.mp3','042.mp3','043.mp3'
   ],
   bhajan: [
-    'loli jaibaba.mp3',
+  'bajgovind bhul matja.mp3',
+  'loli jaibaba.mp3',
   'satsang mai thai maza maza.mp3',
   'mahima kahidi au chawan.mp3',
-  'bajgovind bhul matja.mp3',
   'jaiho-jaiho-jaiho-sacha-satgur.mp3',
   'sant ka sang.mp3',
   'bhaida-swasjimala.mp3'
