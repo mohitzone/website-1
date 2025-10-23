@@ -2,7 +2,7 @@
 window.events = [
   {
     date: "2025-11-05",  // for JS filtering/sorting
-    displayDate: "05 सितंबर 2025", // for showing in Hindi
+    displayDate: "05 नवंबर 2025", // for showing in Hindi
     title: "श्री गुरुनानक देव जयंती, विशेष सत्संग",
     description: "श्री गुरुनानक देव जी की जयंती के पावन अवसर पर विशेष सत्संग का आयोजन। प्रातः 9 बजे से आरंभ – भजन, कीर्तन, गुरुवाणी प्रवचन, चरण वंदना एवं प्रसाद वितरण।"
   },
