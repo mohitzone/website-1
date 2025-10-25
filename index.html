@@ -7,10 +7,43 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob: https:; img-src 'self' data: blob: https:; media-src 'self' data: blob: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.youtube.com https://s.ytimg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https:; frame-src https://www.youtube.com https://www.facebook.com;">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="permissions-policy" content="geolocation=(), microphone=(), camera=()">
-  <title>निजधाम आश्रम</title>
-  <meta name="description" content="निजधाम आश्रम - सत्संग, भजन, सेवा और जयबाबा साहिब की शिक्षाएँ। आश्रमों के पते, कार्यक्रम और ऑडियो गैलरी यहाँ उपलब्ध हैं।">
-  <link rel="canonical" href="index.html">
-  <link rel="icon" href="images/sant-name.jpg">
+  <title>निजधाम आश्रम — जयबाबा | भजन, प्रवचन, Gwalior मंदिर</title>
+  <meta name="description" content="निजधाम आश्रम (जयबाबा) — भजन, प्रवचन और सत्संग। Nijdham Ashram, Gwalior का आध्यात्मिक केंद्र। भजन, प्रवचन, कार्यक्रम और ऑडियो गैलरी यहाँ देखें।">
+  <meta name="keywords" content="nijdham ashram, निजधाम आश्रम, jai baba ki kutiya, jaibaba, बाबा राम दास, gwalior mandir, भजन, प्रवचन, जयबाबा">
+  <!-- Update canonical to your live site URL when deployed (replace with full https://example.com/) -->
+  <link rel="canonical" href="/">
+
+  <!-- Structured data (JSON-LD) for Organization / LocalBusiness to help search engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Place",
+    "name": "निजधाम आश्रम (Nijdham Ashram)",
+    "alternateName": "जयबाबा",
+    "description": "निजधाम आश्रम — भजन, प्रवचन और सत्संग। Nijdham Ashram, Gwalior का आध्यात्मिक केंद्र।",
+    "url": "./",
+    "logo": "./images/logo.jpeg",
+    "image": ["./images/image1.jpeg"],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Gwalior",
+      "addressRegion": "Madhya Pradesh",
+      "addressCountry": "IN"
+    },
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "telephone": "+91-XXXXXXXXXX",
+      "contactType": "customer service",
+      "areaServed": "IN",
+      "availableLanguage": ["Hindi","English"]
+    }],
+    "sameAs": [
+      "https://www.youtube.com/@nijdhamashramgwalior8232",
+      "https://www.facebook.com/nijdham.gwalior"
+    ]
+  }
+  </script>
+  <link rel="icon" href="images/logo.jpeg">
   <!-- Open Graph / Twitter -->
   <meta property="og:title" content="निजधाम आश्रम" />
   <meta property="og:description" content="निजधाम आश्रम - सत्संग, भजन, सेवा और जयबाबा साहिब की शिक्षाएँ।" />
@@ -1129,6 +1162,15 @@
 <script src="events.js"></script>
 <script src="calander.js"></script>
 <script src="script.js"></script>
+<script>
+  window.LIVE_CHECK_CONFIG = {
+    youtube: {
+      apiKey: 'AIzaSyAB-9rwJVmZTDhncWWW3p9Bx7mvTza8LSU', // your YouTube Data API v3 key
+      channelId: 'UC0fPW__qsJ5pKc_Zn7or4_A'   // the channelId (starts with UC)
+    }
+    // you can omit facebook if not using it
+  };
+</script>
 <script src="notifications.js"></script>
 <script src="audio-data.js"></script>
 

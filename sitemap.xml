@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>./</loc>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>./saint.html</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>./Jaibaba_photos/index.html</loc>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>./Jaibaba_audios/pravachan/index.html</loc>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>./Jaibaba_audios/bhajan/index.html</loc>
+    <priority>0.70</priority>
+  </url>
+</urlset>
