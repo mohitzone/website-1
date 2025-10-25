@@ -48,10 +48,105 @@
   });
 
   // ===== Merge both sources =====
-  const allEvents = [...events, ...calendarEvents]
+  // We'll keep this as a mutable list because we may prepend 'live' notifications
+  let allEvents = [...events, ...calendarEvents]
     .filter(e => e.date >= today)   // only upcoming
     .sort((a, b) => a.date - b.date)
     .slice(0, 5); // take next 5
+
+  // Configuration for live-checking. Place your API keys / IDs here or set
+  // them at runtime: window.LIVE_CHECK_CONFIG = { youtube: {...}, facebook: {...} }
+  // Example:
+  // window.LIVE_CHECK_CONFIG = {
+  //   youtube: { apiKey: 'YOUR_GOOGLE_API_KEY', channelId: 'UCxxxx...' },
+  //   facebook: { accessToken: 'PAGE_ACCESS_TOKEN', pageId: 'nijdham.gwalior' }
+  // };
+  window.LIVE_CHECK_CONFIG = window.LIVE_CHECK_CONFIG || {};
+
+  // Helper: check YouTube live via Data API v3 (requires apiKey and channelId).
+  async function checkYouTubeLive(cfg) {
+    if (!cfg || !cfg.apiKey || !cfg.channelId) return null;
+    try {
+      const url = `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${encodeURIComponent(cfg.channelId)}&eventType=live&type=video&key=${encodeURIComponent(cfg.apiKey)}`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('YT fetch failed');
+      const data = await res.json();
+      if (data && Array.isArray(data.items) && data.items.length > 0) {
+        const item = data.items[0];
+        const videoId = (item.id && (item.id.videoId || item.id)) || null;
+        const title = item.snippet && item.snippet.title ? item.snippet.title : 'Live on YouTube';
+        return { platform: 'youtube', live: true, title, url: videoId ? `https://youtu.be/${videoId}` : `https://www.youtube.com/channel/${cfg.channelId}` };
+      }
+      return null;
+    } catch (e) {
+      // don't break on errors
+      console.warn('YouTube live-check error', e);
+      return null;
+    }
+  }
+
+  // Helper: check Facebook live via Graph API (requires page access token and pageId).
+  async function checkFacebookLive(cfg) {
+    if (!cfg || !cfg.accessToken || !cfg.pageId) return null;
+    try {
+      // Try Graph API live_videos endpoint. Requires appropriate permissions on token.
+      const url = `https://graph.facebook.com/${encodeURIComponent(cfg.pageId)}/live_videos?access_token=${encodeURIComponent(cfg.accessToken)}`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('FB fetch failed');
+      const data = await res.json();
+      if (data && Array.isArray(data.data) && data.data.length > 0) {
+        // Look for any entry with status 'LIVE' or that looks current.
+        const liveItem = data.data.find(d => d.status === 'LIVE') || data.data[0];
+        const vid = liveItem && liveItem.id ? liveItem.id : null;
+        const title = liveItem && liveItem.description ? liveItem.description : 'Live on Facebook';
+        return { platform: 'facebook', live: true, title, url: vid ? `https://www.facebook.com/${cfg.pageId}/videos/${vid}` : `https://www.facebook.com/${cfg.pageId}/live` };
+      }
+      return null;
+    } catch (e) {
+      console.warn('Facebook live-check error', e);
+      return null;
+    }
+  }
+
+  // Run live checks in parallel; merge any live notifications to the top of allEvents
+  async function detectLiveStreamsAndMerge() {
+    const cfg = window.LIVE_CHECK_CONFIG || {};
+    const checks = [];
+    if (cfg.youtube && (cfg.youtube.apiKey && cfg.youtube.channelId)) checks.push(checkYouTubeLive(cfg.youtube));
+    if (cfg.facebook && (cfg.facebook.accessToken && cfg.facebook.pageId)) checks.push(checkFacebookLive(cfg.facebook));
+
+    if (checks.length === 0) return; // nothing configured
+
+    try {
+      const results = await Promise.all(checks.map(p => p.catch(() => null)));
+      // for each positive result, create an event-like object and put it at front
+      results.filter(Boolean).forEach(r => {
+        if (r && r.live) {
+          const liveEv = {
+            title: `Nijdham ashram gwalior is live on ${r.platform === 'youtube' ? 'YouTube' : 'Facebook'}`,
+            description: r.title || '',
+            place: `${r.platform} live`,
+            address: r.url,
+            date: new Date(),
+            displayDate: 'Live Now'
+          };
+          // prepend so it appears first
+          allEvents.unshift(liveEv);
+        }
+      });
+      // keep list trimmed to 5
+      allEvents = allEvents.slice(0,5);
+      // If the sidebar container is present, update it live
+      if (container) container.innerHTML = `
+      <div style="background:#fff8e6;border:1px solid #ffdca6;padding:12px;border-radius:8px;font-family:'Noto Sans Devanagari',sans-serif;">
+        <h4 style="margin:0 0 8px;">🔔 आगामी कार्यक्रम</h4>
+        ${buildListHtml(allEvents)}
+      </div>`;
+    } catch (e) {
+      // ignore
+      console.warn('Live-detect merge failed', e);
+    }
+  }
 
   // Build list HTML (shared used in modal and optional container)
   function buildListHtml(items) {
@@ -60,7 +155,15 @@
     items.forEach(ev => {
       const desc = ev.description ? `<br/><span style="color:#333;">${ev.description}</span>` : '';
       const place = ev.place ? `<br/><span style="color:#333;">📍 ${ev.place}</span>` : '';
-      const address = ev.address ? `<br/><span style="color:#333;">🏠 ${ev.address}</span>` : '';
+      let address = '';
+      if (ev.address) {
+        const a = String(ev.address).trim();
+        if (/^https?:\/\//i.test(a)) {
+          address = `<br/><span style="color:#333;">🏠 <a href="${a}" target="_blank" rel="noopener noreferrer">ओपन लाइव / लिंक</a></span>`;
+        } else {
+          address = `<br/><span style="color:#333;">🏠 ${a}</span>`;
+        }
+      }
       list += `
         <li style="margin:10px 0; padding:8px 0; border-bottom:1px dashed #e6e6e6; text-align:left;">
           <strong style="display:block;color:#222;">${ev.title}</strong>
@@ -184,8 +287,16 @@
   }
 
   // Auto-show modal on first load (unless closed today)
-  // Delay slightly to avoid interrupting synchronous page work
-  setTimeout(() => { window.openNotifications(); }, 400);
+  // Run live-detection first (if configured) and then open the modal.
+  // Delay slightly to avoid interrupting synchronous page work.
+  (async function(){
+    try {
+      await detectLiveStreamsAndMerge();
+    } catch (e) {
+      // ignore
+    }
+    setTimeout(() => { window.openNotifications(); }, 400);
+  })();
 
 })();
 
