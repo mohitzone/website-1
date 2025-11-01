@@ -73,10 +73,23 @@
       const fname = 'कार्तिक महीने मै गुरूमहाराज जयबाबा जन जी अमृतमयी कथा.mp3';
   // Prefer an explicit AUDIO_BASE if provided (useful for production URLs)
   // Example: set in HTML before this script: window.AUDIO_BASE = 'https://www.nijdhamashram.in/Jaibaba_audios/';
-  const audioBase = (typeof window !== 'undefined' && window.AUDIO_BASE) ? window.AUDIO_BASE : null;
-  const origin = (typeof location !== 'undefined' && location && location.origin && location.origin !== 'null') ? location.origin : '';
-  const base = audioBase || (origin ? (origin + '/jaibaba_audios/') : './jaibaba_audios/');
-  const href = base + encodeURIComponent(fname);
+      const audioBase = (typeof window !== 'undefined' && window.AUDIO_BASE) ? window.AUDIO_BASE : null;
+      const origin = (typeof location !== 'undefined' && location && location.origin && location.origin !== 'null') ? location.origin : '';
+      // For promo we want to redirect users to the Pravachan listing page (not directly to the MP3)
+      // Prefer explicit AUDIO_PRAVACHAN_PAGE if provided, else use AUDIO_BASE + 'pravachan/' or origin path
+      const audioPravachan = (typeof window !== 'undefined' && window.AUDIO_PRAVACHAN_PAGE) ? window.AUDIO_PRAVACHAN_PAGE : null;
+      let href = null;
+      if (audioPravachan) {
+        href = audioPravachan;
+      } else if (audioBase) {
+        // ensure trailing slash
+        href = (audioBase.endsWith('/') ? audioBase : (audioBase + '/')) + 'pravachan/';
+      } else if (origin) {
+        href = origin + '/Jaibaba_audios/pravachan/';
+      } else {
+        // fallback relative
+        href = './Jaibaba_audios/pravachan/';
+      }
       const promoEv = {
         title: 'नवीन: कार्तिक महीने में गुरूमहाराज जयबाबा जन जी अमृतमयी कथा अपडेट हुई',
         description: 'Kartik Mahotsav पर नया प्रवचन उपलब्ध — सुनें और डाउनलोड करें।',
