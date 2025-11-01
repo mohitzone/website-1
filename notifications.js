@@ -55,6 +55,35 @@
     .slice(0, 5); // take next 5
 
   // ===== Promo: show updated pravachan notification until 5 Nov 2025 (IST) =====
+// ===== Add Today's Shlok as Top Notification =====
+try {
+  // Correct for IST (UTC +05:30)
+const now = new Date();
+const istOffsetMs = 5.5 * 60 * 60 * 1000; // 5.5 hours in milliseconds
+const istNow = new Date(now.getTime() + istOffsetMs);
+const todayISO = istNow.toISOString().slice(0, 10);
+
+
+  fetch('jaibaba_shilok/thoughts.json', { cache: 'no-store' })
+
+    .then(r => r.json())
+    .then(thoughts => {
+      const todays = thoughts.find(t => t.date === todayISO);
+      if (todays) {
+        const shlokNotif = {
+          title: 'आज का श्लोक: ' + (todays.title || ''),
+          description: todays.text || '',
+          date: new Date(todayISO),
+          displayDate: todayISO
+        };
+        allEvents.unshift(shlokNotif);
+      }
+    })
+    .catch(err => console.warn('Failed to fetch today shlok:', err));
+} catch (e) {
+  console.warn('Error adding today shlok notification:', e);
+}
+
   try {
     // Compute current date in IST (Indian Standard Time = UTC+5:30)
     const nowLocal = new Date();

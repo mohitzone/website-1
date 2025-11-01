@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>जयबाबा जी के अमृत मयी श्लोक</title>
+<link rel="icon" href="/images/logo.jpeg">
+<style>
+:root {
+  --accent:#e65b25;
+  --bg:#fffdf6;
+  --muted:#666;
+  --shadow:0 6px 18px rgba(0,0,0,0.08);
+}
+body {
+  font-family:"Noto Sans Devanagari", Arial, sans-serif;
+  background:var(--bg);
+  color:#222;
+  margin:0;
+  line-height:1.6;
+}
+.container {max-width:900px;margin:0 auto;padding:24px;}
+.featured-title,
+.card-body .title {
+  font-weight: 600;
+  color: var(--accent);
+  font-size: 1.15rem;
+  margin-bottom: 6px;
+}
+
+.meta {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.shlok-text {
+  font-size: 1.05rem;
+  color: #333;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+/* 🌸 HEADER BANNER */
+.banner {
+  background:linear-gradient(135deg,#ff9933 0%,#ff7733 100%);
+  color:#fff;
+  text-align:center;
+  padding:32px 12px 20px;
+  position:relative;
+  box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+.banner a.back-link {
+  position:absolute;
+  top:10px;left:12px;
+  color:#fff;
+  text-decoration:none;
+  font-size:0.9rem;
+  background:rgba(255,255,255,0.15);
+  padding:4px 10px;
+  border-radius:6px;
+  transition:background .3s;
+}
+.banner a.back-link:hover{background:rgba(255,255,255,0.25);}
+.banner img {
+  width:80px;height:80px;
+  border-radius:50%;
+  object-fit:cover;
+  box-shadow:0 0 8px rgba(255,255,255,0.7);
+  margin-bottom:10px;
+}
+.banner h1 {
+  font-size:1.8rem;
+  margin:0;
+  color:#fff;
+  text-shadow:0 2px 6px rgba(0,0,0,0.25);
+}
+
+/* ✨ Featured section */
+.featured {
+  display:flex;gap:20px;align-items:flex-start;
+  background:linear-gradient(135deg,#fff 0%,#fffaf2 100%);
+  padding:18px;border-radius:14px;
+  box-shadow:var(--shadow);
+  margin-bottom:24px;
+  transition:transform .2s, box-shadow .3s;
+}
+.featured:hover {transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,0.1);}
+.featured img {
+  width:320px;max-width:40%;
+  border-radius:10px;
+  object-fit:cover;
+  transition:transform .4s ease;
+}
+.featured:hover img {transform:scale(1.03);}
+.featured-body{flex:1;}
+.featured .meta {color:var(--muted);font-size:0.9rem;margin-bottom:8px;}
+.shlok-text {
+  font-size:1.2rem;
+  color:#333;
+  line-height:1.8;
+  white-space:pre-wrap;
+}
+
+/* 🖼️ Grid */
+.shlok-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;margin-top:20px;
+}
+.shlok-card {
+  background:#fff;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  transition:transform .3s, box-shadow .3s;
+}
+.shlok-card:hover {transform:translateY(-3px);box-shadow:0 8px 20px rgba(0,0,0,0.1);}
+.shlok-card img {
+  width:100%;height:180px;object-fit:cover;
+  transition:transform .3s ease;
+}
+.shlok-card:hover img {transform:scale(1.05);}
+.card-body {padding:12px;}
+.card-body .meta {color:var(--muted);font-size:0.85rem;margin-bottom:6px;}
+
+.notes {
+  margin-top:18px;padding:14px 16px;
+  background:#fff9e6;border-left:4px solid var(--accent);
+  border-radius:8px;
+}
+footer {
+  margin-top:26px;text-align:center;color:var(--muted);
+  font-size:0.9rem;
+}
+
+/* 🌙 Lightbox */
+.lightbox {
+  position:fixed;inset:0;
+  background:rgba(0,0,0,0.9);
+  display:flex;justify-content:center;align-items:center;
+  z-index:1000;
+  transition:opacity .3s ease;
+}
+.lightbox[aria-hidden=true]{opacity:0;pointer-events:none;}
+.lightbox[aria-hidden=false]{opacity:1;pointer-events:auto;}
+.lightbox-inner {
+  background:#111;
+  border-radius:10px;
+  max-width:90%;max-height:90%;
+  padding:1rem;
+  box-shadow:0 0 30px rgba(255,255,255,0.1);
+  color:#fff;
+}
+.lightbox-img {
+  max-width:100%;max-height:70vh;
+  display:block;margin:1rem auto;
+  border-radius:8px;
+  box-shadow:0 0 18px rgba(255,255,255,0.15);
+  opacity:0;
+  transition:opacity .3s ease;
+}
+.lightbox[aria-hidden=false] .lightbox-img[src]{opacity:1;}
+.lightbox-meta{font-size:.9rem;color:#ddd;}
+.lightbox-actions {
+  display:flex;gap:.5rem;align-items:center;
+}
+.lightbox-actions a {
+  text-decoration:none;
+  color:#fff;
+  background:var(--accent);
+  padding:6px 12px;
+  border-radius:6px;
+  font-size:0.9rem;
+  transition:background .3s;
+}
+.lightbox-actions a:hover {background:#c74d1b;}
+.lightbox-close {
+  font-size:1.6rem;
+  background:none;border:none;color:#fff;
+  cursor:pointer;
+  transition:transform .2s,color .2s;
+}
+.lightbox-close:hover {transform:scale(1.2);color:var(--accent);}
+@media(max-width:640px){
+  .featured{flex-direction:column;text-align:center}
+  .featured img{width:100%;max-width:100%}
+}
+@media(max-width:600px){
+  .lightbox-inner{width:95%;padding:.75rem;}
+  .lightbox-img{max-height:60vh;}
+}
+</style>
+</head>
+<body>
+<header class="banner">
+  <a href="/" class="back-link">← वेब साइट पर वापस जाएँ</a>
+  <img src="/images/logo.jpeg" alt="जय बाबा जी">
+  <h1>जयबाबा जी के अमृत मयी श्लोक</h1>
+</header>
+
+<main id="shlok-root" class="container"
+data-fallback='[{"id":"2025-11-01-57","date":"2025-11-01","title":"जयबाबा जी के अमृत मयी श्लोक","text":"आज का श्लोक: जीवन का अर्थ सेवा में है — स्वयं को समर्पित करके दूसरों में प्रेम और शांति फैलाओ।","image":"2025-11-01.57.jpeg"}]'></main>
+
+<script src="shloks.js"></script>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox" role="dialog" aria-hidden="true" aria-label="चित्र चौखटा">
+  <div class="lightbox-inner container" role="document">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div class="lightbox-meta"><div class="lightbox-caption" id="lb-caption">&nbsp;</div></div>
+      <div class="lightbox-actions">
+        <a id="lb-download" href="#" download>डाउनलोड</a>
+        <button id="lb-close" class="lightbox-close" aria-label="बन्द करें">&times;</button>
+      </div>
+    </div>
+    <img id="lb-img" class="lightbox-img" src="" alt="श्लोक पूर्ण आकार">
+  </div>
+</div>
+
+<script>
+(function(){
+const root=document.getElementById('shlok-root'),
+lightbox=document.getElementById('lightbox'),
+lbImg=document.getElementById('lb-img'),
+lbCaption=document.getElementById('lb-caption'),
+lbClose=document.getElementById('lb-close'),
+lbDownload=document.getElementById('lb-download');
+function openLightbox(src,caption){
+  if(!src)return;
+  lbImg.src=src;lbImg.alt=caption||'श्लोक चित्र';
+  lbCaption.textContent=caption||'';
+  lbDownload.href=src;
+  lightbox.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+  try{lbClose.focus();}catch(e){}
+}
+function closeLightbox(){
+  lightbox.setAttribute('aria-hidden','true');
+  lbImg.src='';document.body.style.overflow='';
+}
+lbClose.addEventListener('click',closeLightbox);
+lightbox.addEventListener('click',e=>{if(e.target===lightbox)closeLightbox()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
+root.addEventListener('click',e=>{
+ const a=e.target.closest('a'),img=e.target.closest('img');
+ if(a&&a.href&&/\.(jpe?g|png|gif|webp)$/i.test(a.href)){
+   e.preventDefault();
+   const caption=(a.closest('.shlok-card')||a.closest('.featured'))?.querySelector('.meta')?.textContent||'';
+   openLightbox(a.href,caption);return;
+ }
+ if(img&&img.src&&/\.(jpe?g|png|gif|webp)$/i.test(img.src)){
+   const parentA=img.closest('a');
+   if(parentA&&parentA.href){
+     e.preventDefault();
+     openLightbox(parentA.href,(img.closest('.shlok-card')||img.closest('.featured'))?.querySelector('.meta')?.textContent||'');return;
+   }
+   e.preventDefault();
+   openLightbox(img.src,(img.closest('.shlok-card')||img.closest('.featured'))?.querySelector('.meta')?.textContent||'');
+ }
+});
+})();
+</script>
+</body>
+</html>
