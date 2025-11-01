@@ -54,6 +54,49 @@
     .sort((a, b) => a.date - b.date)
     .slice(0, 5); // take next 5
 
+  // ===== Promo: show updated pravachan notification until 5 Nov 2025 (IST) =====
+  try {
+    // Compute current date in IST (Indian Standard Time = UTC+5:30)
+    const nowLocal = new Date();
+    const utcMs = nowLocal.getTime() + (nowLocal.getTimezoneOffset() * 60000);
+    const istOffsetMs = 5.5 * 60 * 60 * 1000;
+    const istNow = new Date(utcMs + istOffsetMs);
+    const istY = istNow.getFullYear();
+    const istM = istNow.getMonth();
+    const istD = istNow.getDate();
+
+    // Target date (inclusive) in IST: 5 Nov 2025 -> year=2025, monthIndex=10
+    const targetY = 2025, targetM = 10, targetD = 5;
+
+    const beforeOrEqual = (istY < targetY) || (istY === targetY && (istM < targetM || (istM === targetM && istD <= targetD)));
+    if (beforeOrEqual) {
+      const fname = 'कार्तिक महीने मै गुरूमहाराज जयबाबा जन जी अमृतमयी कथा.mp3';
+  // Prefer an explicit AUDIO_BASE if provided (useful for production URLs)
+  // Example: set in HTML before this script: window.AUDIO_BASE = 'https://www.nijdhamashram.in/Jaibaba_audios/';
+  const audioBase = (typeof window !== 'undefined' && window.AUDIO_BASE) ? window.AUDIO_BASE : null;
+  const origin = (typeof location !== 'undefined' && location && location.origin && location.origin !== 'null') ? location.origin : '';
+  const base = audioBase || (origin ? (origin + '/jaibaba_audios/') : './jaibaba_audios/');
+  const href = base + encodeURIComponent(fname);
+      const promoEv = {
+        title: 'नवीन: कार्तिक महीने में गुरूमहाराज जयबाबा जन जी अमृतमयी कथा अपडेट हुई',
+        description: 'Kartik Mahotsav पर नया प्रवचन उपलब्ध — सुनें और डाउनलोड करें।',
+        place: 'प्रवचन अपडेट',
+        address: href,
+        date: new Date(),
+        // do not show a date in the UI for this promo; control expiry via promoExpiry (IST)
+        displayDate: '',
+        promoExpiry: '2025-11-05T23:59:59+05:30'
+      };
+      // Prepend promo so it appears first
+      allEvents.unshift(promoEv);
+      // trim to 5 items
+      allEvents = allEvents.slice(0,5);
+    }
+  } catch (e) {
+    // ignore any promo logic errors
+    console.warn('Promo notification setup failed', e);
+  }
+
   // Configuration for live-checking. Place your API keys / IDs here or set
   // them at runtime: window.LIVE_CHECK_CONFIG = { youtube: {...}, facebook: {...} }
   // Example:
@@ -164,10 +207,12 @@
           address = `<br/><span style="color:#333;">🏠 ${a}</span>`;
         }
       }
+      // Only render displayDate if present (some promo items may intentionally hide it)
+      const dateHtml = ev.displayDate ? `<span style="color:#666;">📅 ${ev.displayDate}</span>` : '';
       list += `
         <li style="margin:10px 0; padding:8px 0; border-bottom:1px dashed #e6e6e6; text-align:left;">
           <strong style="display:block;color:#222;">${ev.title}</strong>
-          <span style="color:#666;">📅 ${ev.displayDate}</span>
+          ${dateHtml}
           ${desc}
           ${place}
           ${address}
