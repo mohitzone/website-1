@@ -900,6 +900,61 @@
           box-shadow: 0 8px 18px rgba(0,0,0,0.18);
         }
         .social-links svg { width: 28px; height: 28px; display:block; }
+        /* जयबाबा श्लोक scrolling section styles */
+        .shlok-section .shlok-wrap {
+          display: flex;
+          gap: 1rem;
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        .shlok-feature {
+          display: flex;
+          gap: 1rem;
+          align-items: center;
+          background: linear-gradient(135deg,#fff8e6,#fff1d6);
+          padding: 12px;
+          border-radius: 10px;
+          box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+        }
+
+        .shlok-feature img {
+          width: 160px;
+          height: 110px;
+          object-fit: cover;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .shlok-feature .meta {
+          font-size: 0.95rem;
+          color: #444;
+        }
+
+        .shlok-scroller {
+          display: flex;
+          gap: 12px;
+          overflow-x: auto;
+          padding: 12px 6px;
+          margin-top: 12px;
+        }
+
+        .shlok-card {
+          min-width: 220px;
+          max-width: 260px;
+          background: white;
+          border-radius: 10px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+          overflow: hidden;
+          flex: 0 0 auto;
+        }
+
+        .shlok-card img { width: 100%; height: 140px; object-fit: cover; display:block; }
+        .shlok-card .card-body { padding: 10px; font-size: 0.95rem; color: #333; }
+        .shlok-card .card-body .date { color: #888; font-size: 0.85rem; margin-bottom: 6px; }
+
+        /* Make scroller smoother on touch devices */
+        .shlok-scroller { -webkit-overflow-scrolling: touch; }
     </style>
 </head>
 <body>
@@ -914,6 +969,7 @@
                         <li><a href="#events">कार्यक्रम</a></li>
                         <li><a href="#calendar">वार्षिक कैलेंडर</a></li>
                         <li><a href="#gallery">गैलरी</a></li>
+                        <li><a href="jaibaba_shilok/">जयबाबा जी के अमृत मयी श्लोक</a></li>
                         <li><a href="#locations">हमारे आश्रम स्थल</a></li>
                         <li><a href="#charity">सेवा</a></li>
                     </ul>
@@ -1480,6 +1536,79 @@
                   </div>
                 </div>
               </section>
+
+            <!-- जयबाबा के अमृत मयी श्लोक — scrolling preview on main page -->
+            <section id="shloks" class="section shlok-section">
+              <div class="container shlok-wrap">
+                <h2>जयबाबा जी के अमृत मयी श्लोक</h2>
+
+                <div id="shlok-feature" class="shlok-feature" aria-live="polite">
+                  <img src="jaibaba_shilok/2025-11-01.57.jpeg" alt="आज का श्लोक चित्र" loading="lazy">
+                  <div>
+                    <div class="meta" id="shlok-feature-date">लोड हो रहा है...</div>
+                    <h3 id="shlok-feature-title" style="margin:6px 0;color:#d35400">जयबाबा जी के अमृत मयी श्लोक</h3>
+                    <p id="shlok-feature-text" style="margin:0;color:#333">कृपया प्रतीक्षा करें...</p>
+                  </div>
+                </div>
+
+                <div class="shlok-scroller" id="shlok-scroller" role="list" aria-label="सभी श्लोक - क्षैतिज स्क्रोल">
+                  <!-- cards populated by script -->
+                </div>
+              </div>
+            </section>
+
+            <script>
+              (function(){
+                function isoToHindi(iso){
+                  try{
+                    const d = new Date(iso + 'T00:00:00');
+                    const months = ['जनवरी','फरवरी','मार्च','अप्रैल','मई','जून','जुलाई','अगस्त','सितम्बर','अक्टूबर','नवम्बर','दिसम्बर'];
+                    return d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+                  }catch(e){return iso}
+                }
+
+                fetch('jaibaba_shilok/thoughts.json', {cache: 'no-store'})
+                  .then(r => { if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+                  .then(data => {
+                    const thoughts = Array.isArray(data) ? data.slice() : [];
+                    thoughts.sort((a,b)=> (b.date||'').localeCompare(a.date||''));
+
+                    const feature = thoughts[0];
+                    const targetUrl = 'http://localhost:3000/jaibaba_shilok/';
+                    if(feature){
+                      const fImg = document.querySelector('#shlok-feature img');
+                      if(feature.image) fImg.src = 'jaibaba_shilok/' + encodeURI(feature.image);
+                      document.getElementById('shlok-feature-date').textContent = isoToHindi(feature.date || '');
+                      document.getElementById('shlok-feature-title').textContent = feature.title || 'जयबाबा जी के अमृत मयी श्लोक';
+                      document.getElementById('shlok-feature-text').textContent = feature.text || '';
+                      // make featured clickable
+                      try{
+                        const featureEl = document.getElementById('shlok-feature');
+                        featureEl.style.cursor = 'pointer';
+                        featureEl.addEventListener('click', function(){ window.location.href = targetUrl; });
+                      }catch(e){}
+                    }
+
+                    const scroller = document.getElementById('shlok-scroller');
+                    scroller.innerHTML = '';
+                    thoughts.forEach(t => {
+                      const card = document.createElement('article');
+                      card.className = 'shlok-card';
+                      card.setAttribute('role','listitem');
+                      const img = t.image ? ('<img src="' + ('jaibaba_shilok/' + encodeURI(t.image)) + '" alt="श्लोक चित्र" loading="lazy">') : '';
+                      const body = '<div class="card-body"><div class="date">'+ (isoToHindi(t.date||'')) +'</div><p>'+ (t.text||'') +'</p></div>';
+                      // wrap card content in a link to the full shlok page
+                      const inner = img + body;
+                      card.innerHTML = '<a href="' + targetUrl + '" class="shlok-link" aria-label="श्लोक पृष्ठ खोलें">' + inner + '</a>';
+                      scroller.appendChild(card);
+                    });
+                  })
+                  .catch(err => {
+                    console.warn('श्लोक लोड नहीं कर पा रहे:', err);
+                    document.getElementById('shlok-feature-text').textContent = 'श्लोक लोड करने में समस्या हुई — सर्वर पर jaibaba_shilok/thoughts.json मौजूद है या स्थानीय सर्वर से चलाएँ।';
+                  });
+              })();
+            </script>
         </div>
     </main>
 
