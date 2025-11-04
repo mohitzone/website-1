@@ -956,6 +956,13 @@
         /* Make scroller smoother on touch devices */
         .shlok-scroller { -webkit-overflow-scrolling: touch; }
     </style>
+    <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
+<script src="/config.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=" + window.GA_MEASUREMENT_ID></script>
+<script src="js/analytics.js"></script>
+
+
 </head>
 <body>
     <header>
@@ -1215,18 +1222,11 @@
 </section>
 
 <!-- JS files -->
+
 <script src="events.js"></script>
 <script src="calander.js"></script>
 <script src="script.js"></script>
-<script>
-  window.LIVE_CHECK_CONFIG = {
-    youtube: {
-      apiKey: 'AIzaSyAB-9rwJVmZTDhncWWW3p9Bx7mvTza8LSU', // your YouTube Data API v3 key
-      channelId: 'UC0fPW__qsJ5pKc_Zn7or4_A'   // the channelId (starts with UC)
-    }
-    // you can omit facebook if not using it
-  };
-</script>
+ <script src="/config.js"></script>
 <script src="notifications.js"></script>
 <script src="audio-data.js"></script>
 
