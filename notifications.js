@@ -1,4 +1,6 @@
 // notifications.js
+const apiKey = window.CONFIG?.YOUTUBE?.apiKey || '';
+const channelId = window.CONFIG?.YOUTUBE?.channelId || '';
 
 (function () {
   const CLOSED_KEY = 'notifClosedOn';
@@ -146,7 +148,12 @@ const todayISO = istNow.toISOString().slice(0, 10);
   //   youtube: { apiKey: 'YOUR_GOOGLE_API_KEY', channelId: 'UCxxxx...' },
   //   facebook: { accessToken: 'PAGE_ACCESS_TOKEN', pageId: 'nijdham.gwalior' }
   // };
-  window.LIVE_CHECK_CONFIG = window.LIVE_CHECK_CONFIG || {};
+window.LIVE_CHECK_CONFIG = window.LIVE_CHECK_CONFIG || {};
+window.LIVE_CHECK_CONFIG.youtube = window.LIVE_CHECK_CONFIG.youtube || {
+  apiKey: window.CONFIG?.YOUTUBE?.apiKey,
+  channelId: window.CONFIG?.YOUTUBE?.channelId
+};
+
 
   // Helper: check YouTube live via Data API v3 (requires apiKey and channelId).
   async function checkYouTubeLive(cfg) {

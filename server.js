@@ -1,8 +1,25 @@
 const express = require('express');
 const helmet = require('helmet');
 const path = require('path');
+const dotenv = require('dotenv');
+
 
 const app = express();
+dotenv.config();
+
+app.get('/config.js', (req, res) => {
+  res.setHeader('Content-Type', 'application/javascript');
+  res.send(`
+    window.CONFIG = {
+      GA_MEASUREMENT_ID: '${process.env.GA_MEASUREMENT_ID}',
+      YOUTUBE: {
+        apiKey: '${process.env.YOUTUBE_API_KEY}',
+        channelId: '${process.env.YOUTUBE_CHANNEL_ID}'
+      }
+    };
+  `);
+});
+
 
 // Basic Helmet protections
 app.use(helmet());
