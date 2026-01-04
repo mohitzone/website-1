@@ -422,7 +422,10 @@
           opacity: 0;
           transition: opacity 1s ease-in-out;
           border-radius: 8px;
-          object-fit: cover;
+          display: block;
+          object-fit: contain; /* show whole image without cropping */
+          object-position: center center; /* center image inside frame */
+          background: linear-gradient(135deg, #ffeaa7, #fab1a0) /* prevents transparent gap on some images */
         }
 
         .invitation-slide.active {
