@@ -394,8 +394,38 @@
           padding: 0.5rem 1rem;
           border-radius: 25px;
           font-weight: bold;
-          display: inline-block;
+          display: block;
+          margin: 0 auto 1rem;
+          text-align: center;
+        }
+
+        .event-image {
+          width: 100%;
+          height: auto;
+          border-radius: 8px;
           margin-bottom: 1rem;
+        }
+
+        .invitation-slider {
+          position: relative;
+          width: 95%;
+          height: auto;
+          margin: 0 auto 1rem;
+        }
+
+        .invitation-slide {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: auto;
+          opacity: 0;
+          transition: opacity 1s ease-in-out;
+          border-radius: 8px;
+        }
+
+        .invitation-slide.active {
+          opacity: 1;
         }
 
         .monthly-calendar {
@@ -991,7 +1021,9 @@
   <img class="hero-slide" src="images/image1.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
   <img class="hero-slide" src="images/image3.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
   <img class="hero-slide" src="images/image4.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
-  <img class="hero-slide" src="images/dec-invitenew.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
+  <img class="hero-slide" src="images/13-feb.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
+  <img class="hero-slide" src="images/14-feb.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
+  <img class="hero-slide" src="images/15-17-feb.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
         <nav>
       <div class="hero-content">
         <h1>निजधाम आश्रम में आपका स्वागत है</h1>
@@ -1014,7 +1046,9 @@
       "सतगुरु स्वामी जयबाबा साहिब की जय",
       "स्वामी विशनदास साहिब की जय",
       "दादा दयाल दास साहिब की जय",
-      "12वाँ स्थापना वर्ष",
+      "13-FEB, श्री कृष्णदास जी चारभाटा",
+      "14-FEB, श्री bhagat prakash maharaj ji",
+      "15-17 FEB, सतीश कौशिक जी",
     ];
 
     let currentDoha = 0;
@@ -1034,11 +1068,18 @@
     let currentSlide = 0;
     const slides = document.querySelectorAll('.hero-slide');
     const totalSlides = slides.length;
+    const heroContent = document.querySelector('.hero-content');
 
     function nextSlide() {
       slides[currentSlide].classList.remove('active');
       currentSlide = (currentSlide + 1) % totalSlides;
       slides[currentSlide].classList.add('active');
+      // Hide hero content for slides 4 and 5 (13-feb and 15-17-feb images)
+      if (currentSlide === 4 || currentSlide === 5 ||currentSlide === 6) {
+        heroContent.style.display = 'none';
+      } else {
+        heroContent.style.display = 'block';
+      }
     }
 
     setInterval(nextSlide, 5000); // Change slide every 5 seconds

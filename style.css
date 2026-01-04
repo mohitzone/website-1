@@ -11,6 +11,14 @@
   flex-wrap: nowrap;
   gap: 1rem;
 }
+.event-date {
+  text-align: center;
+  font-weight: 700;
+  font-size: 15px;
+  color: #8b0000; /* optional – devotional maroon */
+  margin-bottom: 10px;
+}
+
 
 .location-card {
   flex: 0 0 auto;
