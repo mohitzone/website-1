@@ -1,6 +1,8 @@
 // Event cards data
 window.events = [
   {
+    dates: ["2026-02-13", "2026-02-18"],
+    displayDate: "13-18 फरवरी 2026",
     title: "",
     description: "",
     image: ["images/invitation1.png", "images/invitation2.png", "images/invitation3.png", "images/invitation4.png"]
