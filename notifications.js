@@ -207,6 +207,11 @@ window.LIVE_CHECK_CONFIG.youtube = window.LIVE_CHECK_CONFIG.youtube || {
     if (cfg.youtube && (cfg.youtube.apiKey && cfg.youtube.channelId)) checks.push(checkYouTubeLive(cfg.youtube));
     if (cfg.facebook && (cfg.facebook.accessToken && cfg.facebook.pageId)) checks.push(checkFacebookLive(cfg.facebook));
 
+    // Add check for latest YouTube video/short
+    if (cfg.youtube && (cfg.youtube.apiKey && cfg.youtube.channelId) && window.fetchLatestYouTubeContent) {
+      checks.push(window.fetchLatestYouTubeContent(cfg.youtube.channelId, cfg.youtube.apiKey));
+    }
+
     if (checks.length === 0) return; // nothing configured
 
     try {
@@ -224,6 +229,16 @@ window.LIVE_CHECK_CONFIG.youtube = window.LIVE_CHECK_CONFIG.youtube || {
           };
           // prepend so it appears first
           allEvents.unshift(liveEv);
+        } else if (r && (r.type === 'video' || r.type === 'short')) {
+          const ytEv = {
+            title: r.type === 'short' ? 'YouTube Short: ' + r.title : 'YouTube Video: ' + r.title,
+            description: r.type === 'short' ? 'नया YouTube शॉर्ट्स अपलोड हुआ है।' : 'नया YouTube वीडियो अपलोड हुआ है।',
+            place: 'YouTube',
+            address: r.url,
+            date: new Date(r.publishedAt),
+            displayDate: 'अभी-अभी'
+          };
+          allEvents.unshift(ytEv);
         }
       });
       // keep list trimmed to 5
