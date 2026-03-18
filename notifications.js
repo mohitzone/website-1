@@ -1,6 +1,6 @@
 // notifications.js
-const apiKey = window.CONFIG?.YOUTUBE?.apiKey || '';
-const channelId = window.CONFIG?.YOUTUBE?.channelId || '';
+const apiKey = window.CONFIG?.YOUTUBE?.YOUTUBE_API_KEY || '';
+const channelId = window.CONFIG?.YOUTUBE?.YOUTUBE_CHANNEL_ID || '';
 
 (function () {
   const CLOSED_KEY = 'notifClosedOn';
