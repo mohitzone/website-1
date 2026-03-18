@@ -1,13 +1,10 @@
-name: Build and Deploy Website
+name: Generate Config
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  generate-config:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -15,6 +12,7 @@ jobs:
 
       - name: Generate config.js from secrets
         run: |
+          mkdir -p ./website-1
           cat > ./website-1/config.js <<EOF
           window.CONFIG = window.CONFIG || {};
           window.CONFIG.YOUTUBE = {
@@ -24,8 +22,8 @@ jobs:
           window.CONFIG.GA_MEASUREMENT_ID = "${{ secrets.GA_MEASUREMENT_ID }}";
           EOF
 
-      # Add your build and deploy steps below
-      # - name: Build
-      #   run: npm install && npm run build
-      # - name: Deploy
-      #   run: ...
+      - name: Upload config.js as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: config-js
+          path: ./website-1/config.js
