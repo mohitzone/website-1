@@ -1048,13 +1048,15 @@
 
     <section id="home" class="hero">
       <div class="hero-slider">
-  <img class="hero-slide active" src="images/image2.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
+  <img class="hero-slide active" src="images/image7.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
+  <img class="hero-slide" src="images/image2.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
   <img class="hero-slide" src="images/image1.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
   <img class="hero-slide" src="images/image3.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
   <img class="hero-slide" src="images/image4.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
   <img class="hero-slide" src="images/image5.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
   <img class="hero-slide" src="images/image6.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
-  <img class="hero-slide" src="images/image7.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
+  <img class="hero-slide" src="images/image8.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
+  
         <nav>
       <div class="hero-content">
         <h1>निजधाम आश्रम में आपका स्वागत है</h1>
@@ -1073,13 +1075,15 @@
   </button>
   <script>
     const dohas = [
+      "Day 2: Program",
       "सतगुरु स्वामी बाबा रामदास साहिब की जय",
       "सतगुरु स्वामी जयबाबा साहिब की जय",
       "स्वामी विशनदास साहिब की जय",
       "दादा दयाल दास साहिब की जय",
       "52 पुण्यतिथि कार्यक्रम",
       "Day 1: Program",
-      "Day 2: Program"
+      "Guru purnima"
+
     ];
 
     let currentDoha = 0;
@@ -1106,7 +1110,7 @@
       currentSlide = (currentSlide + 1) % totalSlides;
       slides[currentSlide].classList.add('active');
       // Hide hero content for slides 4 and 5 (13-feb and 15-17-feb images)
-      if (currentSlide === 4 || currentSlide === 5 ||currentSlide === 6) {
+      if (currentSlide === 6 ||currentSlide === 7 || currentSlide === 8) {
         heroContent.style.display = 'none';
       } else {
         heroContent.style.display = 'block';

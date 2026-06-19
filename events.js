@@ -35,7 +35,7 @@ window.events = [
     displayDate: "29 जुलाई 2026",
     title: "गुरु पूर्णिमा एवं व्यास पूजा (Guru Purnima)",
     description: "श्री निजधाम आश्रम में परम पूज्य सत्गुरु देव जी के पावन सानिध्य में गुरु पूर्णिमा का भव्य महोत्सव।",
-    //image: ["images/guru_purnima_2026.png"]
+    image: ["images/image8.jpeg"]
   },
   // {
   //   dates: ["2026-02-13", "2026-02-18"],
