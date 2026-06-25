@@ -1048,13 +1048,11 @@
 
     <section id="home" class="hero">
       <div class="hero-slider">
-  <img class="hero-slide active" src="images/image7.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
+  <img class="hero-slide active" src="images/image8.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
   <img class="hero-slide" src="images/image2.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
   <img class="hero-slide" src="images/image1.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
   <img class="hero-slide" src="images/image3.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
   <img class="hero-slide" src="images/image4.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
-  <img class="hero-slide" src="images/image5.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
-  <img class="hero-slide" src="images/image6.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
   <img class="hero-slide" src="images/image8.jpeg" alt="Mandir Image" loading="lazy" width="1600" height="900" />
   
         <nav>
@@ -1075,14 +1073,12 @@
   </button>
   <script>
     const dohas = [
-      "Day 2: Program",
+      "गुरु पूर्णिमा एवं व्यास पूजा ",
       "सतगुरु स्वामी बाबा रामदास साहिब की जय",
       "सतगुरु स्वामी जयबाबा साहिब की जय",
       "स्वामी विशनदास साहिब की जय",
       "दादा दयाल दास साहिब की जय",
-      "52 पुण्यतिथि कार्यक्रम",
-      "Day 1: Program",
-      "Guru purnima"
+      "गुरु पूर्णिमा एवं व्यास पूजा "
 
     ];
 
@@ -1105,18 +1101,20 @@
     const totalSlides = slides.length;
     const heroContent = document.querySelector('.hero-content');
 
+    function updateHeroContentVisibility() {
+      if (!heroContent) return;
+
+      heroContent.style.display = currentSlide === 0 ? 'none' : 'block';
+    }
+
     function nextSlide() {
       slides[currentSlide].classList.remove('active');
       currentSlide = (currentSlide + 1) % totalSlides;
       slides[currentSlide].classList.add('active');
-      // Hide hero content for slides 4 and 5 (13-feb and 15-17-feb images)
-      if (currentSlide === 6 ||currentSlide === 7 || currentSlide === 8) {
-        heroContent.style.display = 'none';
-      } else {
-        heroContent.style.display = 'block';
-      }
+      updateHeroContentVisibility();
     }
 
+    updateHeroContentVisibility();
     setInterval(nextSlide, 5000); // Change slide every 5 seconds
   </script>
     
