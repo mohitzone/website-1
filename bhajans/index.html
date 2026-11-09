@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="जयबाबा और सतगुरुओं की आरती एवं भजनों के बोल। हिंदी और अंग्रेज़ी में भजन खोजें।">
+  <title>भजन और आरती — श्री निजधाम आश्रम</title>
+  <link rel="icon" href="/images/logo.jpeg">
+  <style>
+    :root {
+      color-scheme: light;
+      --accent: #e65b25;
+      --accent-dark: #984018;
+      --ink: #30271f;
+      --muted: #6d6258;
+      --paper: #fffaf1;
+      --card: #fff;
+      --line: #f0dfc8;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Noto Sans Devanagari", Arial, sans-serif;
+      line-height: 1.75;
+    }
+
+    a { color: inherit; }
+    .banner {
+      padding: 1rem 1rem 2.5rem;
+      color: #fff;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 50% 110%, rgba(255,255,255,.2), transparent 55%),
+        linear-gradient(135deg, #f8a333, #e65b25);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      margin-bottom: 1rem;
+      padding: .35rem .8rem;
+      border: 1px solid rgba(255,255,255,.45);
+      border-radius: 999px;
+      color: #fff;
+      text-decoration: none;
+      transition: background .2s ease;
+    }
+
+    .back-link:hover { background: rgba(255,255,255,.15); }
+    h1 { margin: 0; font-size: clamp(1.8rem, 5vw, 2.7rem); line-height: 1.3; }
+    .banner p { margin: .4rem 0 0; opacity: .94; }
+
+    main {
+      width: min(900px, 100%);
+      margin: 0 auto;
+      padding: 0 1.25rem 3rem;
+    }
+
+    .search-panel {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      margin: -1rem 0 1.5rem;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.97);
+      box-shadow: 0 8px 24px rgba(80,48,20,.08);
+      backdrop-filter: blur(8px);
+    }
+
+    .search-panel label { display: block; margin-bottom: .35rem; font-weight: 700; }
+    #bhajan-search {
+      width: 100%;
+      min-height: 50px;
+      padding: .7rem .9rem;
+      border: 1px solid #cbb79f;
+      border-radius: 9px;
+      color: var(--ink);
+      background: #fff;
+      font: inherit;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+
+    #bhajan-search:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(230,91,37,.16);
+    }
+
+    #search-status { min-height: 1.5em; margin: .35rem 0 0; color: var(--muted); font-size: .9rem; }
+    .group { margin-top: 1.7rem; }
+    .group h2 {
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+      margin: 0 0 .75rem;
+      color: var(--accent-dark);
+      font-size: 1.4rem;
+    }
+
+    .group h2::after { content: ""; height: 1px; flex: 1; background: var(--line); }
+    .song-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: .7rem; }
+    .song-button {
+      display: flex;
+      width: 100%;
+      min-height: 58px;
+      align-items: center;
+      justify-content: space-between;
+      gap: .75rem;
+      padding: .8rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      color: var(--ink);
+      background: var(--card);
+      box-shadow: 0 3px 12px rgba(80,48,20,.04);
+      text-align: left;
+      font: inherit;
+      cursor: pointer;
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .song-button::after {
+      content: "›";
+      flex: 0 0 auto;
+      color: var(--accent);
+      font-family: Arial, sans-serif;
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .song-button:hover,
+    .song-button[aria-pressed="true"] {
+      transform: translateY(-1px);
+      border-color: #e8a27e;
+      background: #fffaf5;
+      box-shadow: 0 6px 16px rgba(80,48,20,.09);
+    }
+
+    .song-button:focus-visible,
+    .detail-back:focus-visible,
+    .back-link:focus-visible {
+      outline: 3px solid rgba(230,91,37,.45);
+      outline-offset: 3px;
+    }
+
+    .song-detail {
+      margin-top: 1.5rem;
+      padding: clamp(1rem, 4vw, 2rem);
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--accent);
+      border-radius: 14px;
+      background: var(--card);
+      box-shadow: 0 8px 24px rgba(80,48,20,.08);
+      scroll-margin-top: 1rem;
+    }
+
+    .detail-back {
+      margin: 0 0 1rem;
+      padding: .45rem .8rem;
+      border: 0;
+      border-radius: 999px;
+      color: var(--accent-dark);
+      background: #fff2e7;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .detail-type { margin: 0; color: var(--muted); font-size: .9rem; }
+    .song-detail h2 { margin: .2rem 0 0; color: var(--accent-dark); font-size: clamp(1.35rem, 4vw, 1.8rem); }
+    .song-detail .transliteration { margin: .15rem 0 1.2rem; color: var(--muted); font-style: italic; }
+    .lyrics {
+      margin: 0;
+      padding-top: 1rem;
+      border-top: 1px solid var(--line);
+      white-space: pre-line;
+      overflow-wrap: anywhere;
+      font-size: 1.08rem;
+    }
+
+    .empty-state {
+      margin: 1.5rem 0;
+      padding: 1.5rem;
+      border: 1px dashed #d9c4aa;
+      border-radius: 12px;
+      color: var(--muted);
+      background: rgba(255,255,255,.65);
+      text-align: center;
+    }
+
+    footer { padding: 1rem; color: var(--muted); text-align: center; }
+
+    @media (max-width: 600px) {
+      main { padding: 0 .85rem 2.5rem; }
+      .banner { padding-bottom: 2rem; }
+      .search-panel { margin-top: -1rem; padding: .8rem; }
+      .song-list { grid-template-columns: 1fr; }
+      .lyrics { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="banner">
+    <a class="back-link" href="/">← मुख्य पृष्ठ</a>
+    <h1>भजन और आरती</h1>
+    <p>सतगुरुओं की वाणी और भक्ति गीत</p>
+  </header>
+
+  <main>
+    <div class="search-panel">
+      <label for="bhajan-search">भजन या आरती खोजें</label>
+      <input id="bhajan-search" type="search" autocomplete="off"
+        placeholder="हिंदी या English में खोजें — जैसे: जयबाबा जी की आरती">
+      <p id="search-status" role="status" aria-live="polite"></p>
+    </div>
+
+    <div id="song-groups"></div>
+    <p id="empty-state" class="empty-state" hidden>इस खोज से कोई भजन या आरती नहीं मिली।</p>
+    <section id="song-detail" class="song-detail" aria-live="polite" hidden>
+      <button id="detail-back" class="detail-back" type="button">← सूची पर वापस जाएँ</button>
+      <p id="detail-type" class="detail-type"></p>
+      <h2 id="detail-title"></h2>
+      <p id="detail-transliteration" class="transliteration"></p>
+      <p id="detail-lyrics" class="lyrics"></p>
+    </section>
+  </main>
+
+  <footer>जयबाबा साहिब की जय 🙏</footer>
+  <script src="bhajans.js"></script>
+</body>
+</html>
